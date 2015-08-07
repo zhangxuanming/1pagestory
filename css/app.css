@@ -26,6 +26,26 @@ html,body {
 .white{
     background-color: azure;
 }
+.zh-blue{
+    background-color: #337ab7;
+}
 .zh-yellow{
     background-color: #FFCC00;
 }
+
+.zh-sbtn{
+
+}
+.storytext{
+
+}
+.storytext a{
+    color: azure;
+    text-decoration: none;
+}
+.storytext a:after{
+    text-decoration: none;
+}
+/*.hidden{*/
+    /*display: none;*/
+/*}*/
