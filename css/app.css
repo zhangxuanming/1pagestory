@@ -13,6 +13,11 @@ html,body {
     top: 50%;
     transform: translateY(-50%);
 }
+.v-center-20{
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+}
 .full{
     position:relative;
     min-height: 100%;
@@ -46,6 +51,6 @@ html,body {
 .storytext a:after{
     text-decoration: none;
 }
-/*.hidden{*/
-    /*display: none;*/
-/*}*/
+.zh-stamp{
+    max-width: 200px ;
+}
