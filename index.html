@@ -15,6 +15,41 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="js/juicer-min.js"></script>
+
+    <!--模板-->
+    <script id="pageTpl" type="text/template">
+        <div class="row page page${id} full hidden zh-blue">
+            <div class="col-md-12 full" style="position: relative;">
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img src="src/img/${img}" class="img-responsive center-block" alt="Responsive image" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="text-left storytext">
+                            ${txt}
+                        </h4>
+                    </div>
+                </div>
+                <div class="row zh-option">
+                    <div class="col-md-12">
+                        <button class="btn center-block btn-block sb"
+                                style="height: 100px;position: relative;background-color: gold;border: 1px solid rgba(255,255,255,0.5)"></button>
+                    </div>
+                    <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none;position: fixed;bottom: 0;width: 100%">
+                        <br>
+                        {@each actions as item,index}
+                            <div data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-sbtn">${item.txt}</div>
+                        {@/each}
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
 </head>
 
 <body>
@@ -24,152 +59,179 @@
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
         <div class="col-xs-6 col-xs-offset-3 v-center">
-            <button data-np={"cp":0,"np":1} class="btn btn-default btn-block btn-lg zh-sbtn" style="font-weight: bold">开始嗨</button>
+            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn" style="font-weight: bold">开始嗨</button>
         </div>
     </div>
 
-    <div class="row page page1 full hidden zh-blue">
-        <div class="col-md-12" style="position: relative;">
-            <br>
+    <!--剧情会被插入这里-->
+
+    <!--结局页-->
+    <div class="row page page-1 full zh-yellow hidden">
+        <br>
+        <div class="col-xs-12">
             <div class="row">
-                <div class="col-sm-12">
-                    <img src="src/img/demo.jpg" class="img-responsive center-block" alt="Responsive image" >
+                <div class="col-xs-5">
+                    <img class="zh-stamp img-thumbnail img-circle" style="margin-top: -3px" src="./src/img/badge/stamp_3.png" />
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h4 class="text-left storytext">
-                        “<a id="122" >命运</a>”这种东西，最多的组成部分就是“意外”。上一次领悟到这种事，是几个月前被女友毫无征兆甩掉的时候——当然，“毫无征兆”是对自己而言，事情发生后周围所有人都摆出先知的表情说早就知道会这样了。
-                        而现在，意外再次发生了，和这次意外比起来，被女友甩掉简直连屁都不算。
-                        他一直觉得自己虽然不算成功人士，但至少还算个好人，他有一些正义感，有一些热情，而且他认为自己的神经够粗够坚韧。所以他会毫不犹豫地去救一个要被大卡车撞到的小女孩，然后记忆就停止在卡车撞上自己的一瞬间。
-                    </h4>
-                </div>
-            </div>
-            <div class="row zh-option">
-                <div class="col-md-12">
-                    <button class="btn center-block btn-block sb"
-                            style="height: 100px;position: relative;background-color: gold;border: 1px solid rgba(255,255,255,0.5)"></button>
-                </div>
-                <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none">
-                    <br>
-                    <div data-np={"cp":1,"np":1} class="btn btn-default btn-block zh-sbtn">A:剧情1</div>
-                    <div data-np={"cp":1,"np":2} class="btn btn-default btn-block zh-sbtn">B:剧情2</div>
-                    <div data-np={"cp":1,"np":3} class="btn btn-default btn-block zh-sbtn">C:剧情3</div>
-                    <br>
+                <div class="col-xs-6">
+                    <p>根据您的战斗表现，我们觉得您的战斗力为 :
+                        <span class="zh-totalscore"></span>
+                    </p>
+                    <p class="zh-summarytext"></p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="row page page2 full green hidden">
-        <div class="col-md-12" style="position: relative;">
-            <br>
-            <div class="row">
-                <div class="col-sm-12">
-                    <img src="src/img/2.jpeg" class="img-responsive center-block" alt="Responsive image" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h4 class="text-left storytext">
-                        “<a id="123" >命运</a>”这种东西，最多的组成部分就是“意外”。上一次领悟到这种事，是几个月前被女友毫无征兆甩掉的时候——当然，“毫无征兆”是对自己而言，事情发生后周围所有人都摆出先知的表情说早就知道会这样了。
-                        而现在，意外再次发生了，和这次意外比起来，被女友甩掉简直连屁都不算。
-                        他一直觉得自己虽然不算成功人士，但至少还算个好人，他有一些正义感，有一些热情，而且他认为自己的神经够粗够坚韧。所以他会毫不犹豫地去救一个要被大卡车撞到的小女孩，然后记忆就停止在卡车撞上自己的一瞬间。
-                    </h4>
-                </div>
-            </div>
-            <div class="row zh-option">
-                <div class="col-md-12">
-                    <button class="btn center-block btn-block sb"
-                            style="height: 100px;position: relative;background-color: gold;border: 1px solid rgba(255,255,255,0.5)"></button>
-                </div>
-                <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none">
-                    <br>
-                    <div data-np={"cp":2,"np":1} class="btn btn-default btn-block zh-sbtn">A:剧情1</div>
-                    <div data-np={"cp":2,"np":2} class="btn btn-default btn-block zh-sbtn">B:剧情2</div>
-                    <div data-np={"cp":2,"np":3} class="btn btn-default btn-block zh-sbtn">C:剧情3</div>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row page page3 full white hidden">
-        <div class="col-md-12" style="position: relative;">
-            <br>
-            <div class="row">
-                <div class="col-sm-12">
-                    <img src="src/img/3.jpeg" class="img-responsive center-block" alt="Responsive image" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h4 class="text-left">
-                        “命运”这种东西，最多的组成部分就是“意外”。上一次领悟到这种事，是几个月前被女友毫无征兆甩掉的时候——当然，“毫无征兆”是对自己而言，事情发生后周围所有人都摆出先知的表情说早就知道会这样了。
-                        而现在，意外再次发生了，和这次意外比起来，被女友甩掉简直连屁都不算。
-                        他一直觉得自己虽然不算成功人士，但至少还算个好人，他有一些正义感，有一些热情，而且他认为自己的神经够粗够坚韧。所以他会毫不犹豫地去救一个要被大卡车撞到的小女孩，然后记忆就停止在卡车撞上自己的一瞬间。
-                    </h4>
-                </div>
-            </div>
-            <div class="row zh-option">
-                <div class="col-md-12">
-                    <button class="btn center-block btn-block sb"
-                            style="height: 100px;position: relative;background-color: gold;border: 1px solid rgba(255,255,255,0.5)"></button>
-                </div>
-                <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none">
-                    <br>
-                    <div data-np={"cp":3,"np":1} class="btn btn-default btn-block zh-sbtn">A:剧情1</div>
-                    <div data-np={"cp":3,"np":2} class="btn btn-default btn-block zh-sbtn">B:剧情2</div>
-                    <div data-np={"cp":3,"np":3} class="btn btn-default btn-block zh-sbtn">C:剧情3</div>
-                    <br>
-                </div>
-            </div>
+        <div class="col-xs-6 col-xs-offset-3 v-center">
+            <h4 class="center-block text-center zh-score">恭喜通关啦</h4>
+            <button class="btn btn-block btn-default btn-lg zh-restartbtn">重玩一次</button>
         </div>
     </div>
 
 </div>
 
-<script src="js/vue/vue.js"></script>
+<!--<script src="js/vue/vue.js"></script>-->
 <script src="js/jquery-2.1.4.min.js"></script>
+<!--配置页面-->
+<script src="js/config.js"></script>
 <script src="css/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <script src="js/greensock-js/src/minified/TweenMax.min.js"></script>
-<script src="js/hammer/hammer.js"></script>
+<!--<script src="js/hammer/hammer.js"></script>-->
 
 <script>
 
     window.onload = function(){
-        var pgs = $('.page');
-        var sb = pgs.find(".sb");
-        $(document).on({
-            click:function(e){
-                var ob = $(this).parent().siblings(".zh-btnblock");
-                var tl = new TimelineMax();
-                $(this).hide();
-                ob.show();
-                tl.fromTo(ob,1,{alpha:0,y:400},{alpha:1,y:0},-0.5);
-            }
-        },'.sb');
+        //配置页面在config.js
+        //加载页面
+        zhJumpAction.init();
+        zhLoadStory.init(zhConfig.storyTpl);
+        $(".zh-restartbtn").click(function(e){
+            zhJumpAction.restart();
+        })
+    };
 
-        $(document).ready(function(){
+    var zhJumpAction = (function(){
+        var me = {};
+        var totalScore = 0;
+        //显示跳转按钮
+        var showAction = function(){
+            $(document).on({
+                click:function(e){
+                    var ob = $(this).parent().siblings(".zh-btnblock");
+                    var tl = new TimelineMax();
+                    $(this).hide();
+                    ob.show();
+                    tl.fromTo(ob,1,{alpha:0,y:400},{alpha:1,y:0},-0.5);
+                }
+            },'.sb');
+        };
+        //动作调用
+        var jump = function(){
             $(".container").on({
                 click:function(e){
                     var t = $(this);
-                    var attr = t.attr("data-np");
-                    var pinfo = $.parseJSON(attr);
-                    var np = $(".page"+ pinfo.np); //next page
-                    var cp = $('.page'+pinfo.cp); //current page
+                    var np = $(".page"+ t.attr('data-to')); //next page
+                    var cp = $('.page'+ t.attr('data-from')); //current page
+                    var score = t.attr('data-score');
+                        score = score?parseInt(score):0;
+                    var scoreSummary = "";
                     if(cp.selector==np.selector){
                         return;
+                    }
+                    totalScore += score;
+                    if (parseInt(t.attr('data-to'))<0){
+                        var summaryText = getSummary(totalScore);
+                        $('.zh-totalscore').html(totalScore);
+                        $('.zh-summarytext').html(summaryText.text);
+                        $('.zh-stamp').attr("src","./src/img/badge/"+summaryText.img);
+
                     }
                     cp.hide();
                     np.removeClass('hidden');
                     np.show();
                     TweenMax.fromTo(np,1,{alpha:0,y:2000},{alpha:1,y:0,ease:Strong.easeOut});
-//                    console.log(cp);
                 }
-            },".zh-sbtn")
-        })
-    }
+            },".zh-sbtn");
+        };
+        //计算总结页
+        var getSummary = function(score){
+            var des = null;
+            var me = {};
+            $.each(zhConfig.summaryText.scoreSummary,function(i,v){
+                des = (score>= v.from && score<= v.to) ? v.text : null;
+                if (des){
+                    me.text = v.text;
+                    me.img = v.stamp;
+                    return false;
+                }
+            });
+            return me;
+        };
+//        重玩
+        me.restart = function(){
+            totalScore = 0;
+            $(".page").hide();
+            $(".page0").show();
+        };
+        me.init = function(){
+            jump();
+            showAction();
+        };
+        return me;
+    }());
+
+    //加载剧情
+    var zhLoadStory = (function(){
+        var me = {};
+        var sarr = [];
+        var storyObject = {};
+        var tpl = $('#pageTpl').html();
+        function loadStory(tpl){
+            $.get(tpl,function(data){
+                if(!data){
+                    return false
+                }
+                sarr = $(data).filter("section");
+                $.each(sarr,function(i,v){
+                    var st = {};
+
+                    var act = [];//actions
+                    var d = $(v);
+                    st.id = d.attr("id");
+                    st.img = d.find("img")? d.find("img").attr("data-img"): null;
+                    st.txt = d.find("p").text();
+
+                    if (d.find("button")){
+                        $.each(d.find("button"),function(i,v){
+                            var btn = {};
+                            var adom = $(v); //action dom
+                            btn.from = st.id;
+                            btn.to = adom.attr("data-to");
+                            btn.score = adom.attr("data-score");
+                            btn.txt = adom.text();
+                            act.push(btn);
+                        })
+                    }
+                    st.actions = act;
+                    storyObject[i] = st;
+                });
+
+                var html = '';
+                $.each(storyObject,function(i,v){
+                    html += randerPage(v);
+                });
+                $(".page0").after(html);
+            });
+        }
+
+        function randerPage(data){
+            return juicer(tpl,data);
+        }
+
+        me.init = function(tpl) {
+            loadStory(tpl);
+        };
+        return me
+    }());
 </script>
 </body>
 </html>
