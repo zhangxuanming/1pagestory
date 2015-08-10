@@ -44,6 +44,9 @@ html,body {
 .storytext{
 
 }
+.storytext p{
+    margin-bottom: 0;
+}
 .storytext a{
     color: azure;
     text-decoration: none;
@@ -52,5 +55,31 @@ html,body {
     text-decoration: none;
 }
 .zh-stamp{
-    max-width: 200px ;
+    min-height: 200px;
+    max-width: 200px;
+    min-width: 200px;
+}
+.sprite {
+    background-image: url(../src/img/badge/stamp.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: cover;
+}
+
+.sprite-stamp_1 {
+    width: 200px;
+    height: 200px;
+    background-position: 0 0;
+}
+
+.sprite-stamp_2 {
+    width: 200px;
+    height: 200px;
+    background-position: 0 -199px;
+}
+
+.sprite-stamp_3 {
+    width: 200px;
+    height: 200px;
+    background-position: 0 -398px;
 }

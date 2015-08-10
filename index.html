@@ -30,7 +30,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h4 class="text-left storytext">
-                            ${txt}
+                            {@each txt as item,index}
+                                <p>${item}</p>
+                            {@/each}
                         </h4>
                     </div>
                 </div>
@@ -70,6 +72,7 @@
         <br>
         <div class="col-xs-12">
             <div class="row">
+                <!--徽章-->
                 <div class="col-xs-12">
                     <img class="zh-stamp center-block img-thumbnail img-circle" style="margin-top: -3px" src="./src/img/badge/stamp_3.png" />
                 </div>
@@ -126,7 +129,7 @@
                     var tl = new TimelineMax();
                     $(this).hide();
                     ob.show();
-                    tl.fromTo(ob,1,{alpha:0,y:400},{alpha:1,y:0},-0.5);
+                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0},-0.5);
                 }
             },'.sb');
         };
@@ -139,7 +142,6 @@
                     var cp = $('.page'+ t.attr('data-from')); //current page
                     var score = t.attr('data-score');
                         score = score?parseInt(score):0;
-                    var scoreSummary = "";
                     if(cp.selector==np.selector){
                         return;
                     }
@@ -149,12 +151,11 @@
                         $('.zh-totalscore').html(totalScore);
                         $('.zh-summarytext').html(summaryText.text);
                         $('.zh-stamp').attr("src","./src/img/badge/"+summaryText.img);
-
                     }
                     cp.hide();
                     np.removeClass('hidden');
                     np.show();
-                    TweenMax.fromTo(np,1,{alpha:0,y:2000},{alpha:1,y:0,ease:Strong.easeOut});
+                    TweenMax.fromTo(np,1,{alpha:0,x:2000},{alpha:1,x:0,ease:Strong.easeOut});
                 }
             },".zh-sbtn");
         };
@@ -172,7 +173,7 @@
             });
             return me;
         };
-//        重玩
+        //重玩
         me.restart = function(){
             totalScore = 0;
             $(".page").hide();
@@ -199,12 +200,15 @@
                 sarr = $(data).filter("section");
                 $.each(sarr,function(i,v){
                     var st = {};
-
                     var act = [];//actions
                     var d = $(v);
                     st.id = d.attr("id");
                     st.img = d.find("img")? d.find("img").attr("data-img"): null;
-                    st.txt = d.find("p").text();
+                    var _text = d.find('[data-txt=story]').find("p");
+                    st.txt = {};
+                    $.each(_text,function(i,v){
+                        st.txt[i]=($(v).text());
+                    });
 
                     if (d.find("button")){
                         $.each(d.find("button"),function(i,v){
@@ -221,6 +225,7 @@
                     storyObject[i] = st;
                 });
 
+                //模板装载页面
                 var html = '';
                 $.each(storyObject,function(i,v){
                     html += randerPage(v);
