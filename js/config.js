@@ -5,7 +5,7 @@
 zhConfig = (function(){
     var me = {};
     //模板文件
-    me.storyTpl = "src/story/1.html";
+    me.storyTpl = "src/story/yure1.html";
     //总结页设定
     me.summaryText = {
         "des":"根据您的战斗表现，我们觉得您的战斗力为:",
