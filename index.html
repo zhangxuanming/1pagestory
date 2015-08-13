@@ -111,10 +111,89 @@
 
     $(document).ready(function(){
         var sig = "http://dwx.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
-        $.getJSON(sig,function(e){
-            console.log(e);
+        $.getJSON(sig,function(data){
+            wx.config({
+                debug: true,
+                appId: data.appId,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                ]
+            });
         });
-        console.log(sig);
+
+        wx.ready(function() {
+            var shareTitle = '字嗨预热';
+            var shareDesc = '阿拉拉拉拉';
+            var shareLink = '而是测试测试';
+            var shareImg = '阿拉蕾';
+
+            // 分享给朋友事件绑定
+            wx.onMenuShareAppMessage({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: shareTitle,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到QQ
+            wx.onMenuShareQQ({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到微博
+            wx.onMenuShareWeibo({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+        });
     });
 
     window.onload = function(){
