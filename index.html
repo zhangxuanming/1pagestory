@@ -114,7 +114,7 @@
         $.getJSON(sig,function(data){
             wx.config({
                 debug: true,
-                appId: data.appId,
+                appId: data.appID,
                 timestamp: data.timestamp,
                 nonceStr: data.nonceStr,
                 signature: data.signature,
