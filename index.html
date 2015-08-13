@@ -109,6 +109,14 @@
 
 <script>
 
+    $(document).ready(function(){
+        var sig = "http://dwx.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+        $.getJSON(sig,function(e){
+            console.log(e);
+        });
+        console.log(sig);
+    });
+
     window.onload = function(){
         //配置页面在config.js
         //加载页面
