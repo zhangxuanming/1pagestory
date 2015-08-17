@@ -10,12 +10,12 @@ zhConfig = (function(){
     me.summaryText = {
         "des":"根据您的战斗表现，我们觉得您的战斗力为:",
         "scoreSummary" : {
-            "perfect":{"from":22,"to":22,"text":"你是警察吧","stamp":"stamp_1.png"},
-            "good":{"from":15,"to":21,"text":"不错啊，战斗力很好","stamp":"stamp_3.png"},
-            "normal":{"from":10,"to":14,"text":"多多练习，不然就被卖了","stamp":"stamp_3.png"},
-            "bad":{"from":1,"to":9,"text":"马上就要被拐走了","stamp":"stamp_2.png"},
-            "terrible":{"from":-100,"to":0,"text":"你在山里还能上网么。。","stamp":"stamp_2.png"},
-            "else":{"from":-50000,"to":-100,"text":"额。。。","stamp":"stamp_2.png"}
+            "perfect":{"from":501,"to":5000,"text":"主角光环护体","stamp":"stamp_1.png"},
+            "good":{"from":201,"to":500,"text":"反拐小英雄","stamp":"stamp_3.png"},
+            "normal":{"from":1,"to":200,"text":"别被拐了，会很惨的","stamp":"stamp_3.png"},
+            "bad":{"from":0,"to":0,"text":"千秋一场睡佛梦","stamp":"stamp_2.png"},
+            "terrible":{"from":-500,"to":-1,"text":"邪魔外道，文明之耻。","stamp":"stamp_2.png"},
+            "else":{"from":-5000,"to":-501,"text":"杀生为护生，邪道红莲！","stamp":"stamp_2.png"}
         }
     };
     return me;
