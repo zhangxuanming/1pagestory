@@ -30,11 +30,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <h4 class="text-left storytext">
-                            {@each txt as item,index}
+                        {@each txt as item,index}
+                            {@if item==""}
+                                <br/>
+                            {@else}
                                 <p>${item}</p>
-                            {@/each}
-                        </h4>
+                            {@/if}
+                        {@/each}
                     </div>
                 </div>
                 <div class="row zh-option">
@@ -109,11 +111,77 @@
 
 <script>
 
+    $(document).ready(function(){
+        var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+        $.getJSON(sig,function(data){
+            wx.config({
+                debug: true,
+                appId: data.appID,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo'
+                ]
+            });
+        });
+
+        wx.ready(function() {
+            var shareTitle = '字嗨预热版bate1';
+            var shareDesc = '我是一只小鸭子';
+            var shareLink = 'http://wxdev.wordhi.com';
+            var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
+
+//            wx.checkJsApi({
+//                jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+//                success: function(res) {
+//                    // 以键值对的形式返回，可用的api值true，不可用为false
+//                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+//                }
+//            });
+
+            // 分享给朋友事件绑定
+            wx.onMenuShareAppMessage({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: shareTitle,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到QQ
+            wx.onMenuShareQQ({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+
+            // 分享到微博
+            wx.onMenuShareWeibo({
+                title: shareTitle,
+                desc: shareDesc,
+                link: shareLink,
+                imgUrl: shareImg
+            });
+        });
+    });
+
     window.onload = function(){
         //配置页面在config.js
         //加载页面
-        zhJumpAction.init();
         zhLoadStory.init(zhConfig.storyTpl);
+        zhJumpAction.init();
         $(".zh-restartbtn").click(function(e){
             zhJumpAction.restart();
         })
@@ -160,6 +228,7 @@
                 }
             },".zh-sbtn");
         };
+
         //计算总结页和展示
         var getSummary = function(score){
             var des = null;
@@ -174,15 +243,19 @@
             });
             return me;
         };
+
         //重玩
         me.restart = function(){
             totalScore = 0;
             $(".page").hide();
             $(".page0").show();
         };
+
+        //初始化
         me.init = function(){
             jump();
             showAction();
+
         };
         return me;
     }());
@@ -193,51 +266,60 @@
         var sarr = [];
         var storyObject = {};
         var tpl = $('#pageTpl').html();
+
         function loadStory(tpl){
+            var storyTpl = {},
+                summaryTpl = {};
             $.get(tpl,function(data){
                 if(!data){
                     return false
                 }
-                sarr = $(data).filter("section");
-                $.each(sarr,function(i,v){
-                    var st = {};
-                    var act = [];//actions
-                    var d = $(v);
-                    st.id = d.attr("id");
-                    st.img = d.find("img")? d.find("img").attr("data-img"): null;
-                    var _text = d.find('[data-txt=story]').find("p");
-                    st.txt = {};
-                    $.each(_text,function(i,v){
-                        st.txt[i]=($(v).text());
-                    });
-
-                    if (d.find("button")){
-                        $.each(d.find("button"),function(i,v){
-                            var btn = {};
-                            var adom = $(v); //action dom
-                            btn.from = st.id;
-                            btn.to = adom.attr("data-to");
-                            btn.score = adom.attr("data-score");
-                            btn.txt = adom.text();
-                            act.push(btn);
-                        })
-                    }
-                    st.actions = act;
-                    storyObject[i] = st;
-                });
-
-                //模板装载页面
-                var html = '';
-                $.each(storyObject,function(i,v){
-                    html += randerPage(v);
-                });
-                $(".page0").after(html);
+                var t = $(data);
+                storyTpl = t.filter("#stories").find("section");
+                summaryTpl = t.filter("#summary");
+                templateToJson(storyTpl);
             });
         }
 
-        function randerPage(data){
+        var templateToJson = function(storiesBlock){
+            //template to object
+            $.each(storiesBlock,function(i,v){
+                var st = {};
+                var act = [];//actions
+                var d = $(v);
+                st.id = d.attr("id");
+                st.img = d.find("img")? d.find("img").attr("data-img"): null;
+                var _textLines = d.find('[data-txt=story]').find("p");
+                st.txt = {};
+                $.each(_textLines,function(i,v){
+                    var a = $(v).text();
+                    st.txt[i] = $.trim(a);
+                });
+                if (d.find("button")){
+                    $.each(d.find("button"),function(i,v){
+                        var btn = {};
+                        var adom = $(v); //action dom
+                        btn.from = st.id;
+                        btn.to = adom.attr("data-to");
+                        btn.score = adom.attr("data-score");
+                        btn.txt = adom.text();
+                        act.push(btn);
+                    })
+                }
+                st.actions = act;
+                storyObject[i] = st;
+            });
+            //模板装载页面
+            var html = '';
+            $.each(storyObject,function(i,v){
+                html += randerPage(v);
+            });
+            $(".page0").after(html);
+        };
+
+        var randerPage = function(data){
             return juicer(tpl,data);
-        }
+        };
 
         me.init = function(tpl) {
             loadStory(tpl);
