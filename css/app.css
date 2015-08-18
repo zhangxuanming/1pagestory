@@ -58,6 +58,14 @@ html,body {
     0%{border-width:20px;border-color: transparent}
     100%{border-width:0;border-color: azure}
 }
+@-moz-keyframes sb {
+    0%{border-width:20px;border-color: transparent}
+    100%{border-width:0;border-color: azure}
+}
+@-webkit-keyframes sb {
+    0%{border-width:20px;border-color: transparent}
+    100%{border-width:0;border-color: azure}
+}
 .storytext{
 
 }
@@ -120,6 +128,16 @@ html,body {
     50%{color: #333333}
     100%{ color: #999999}
 }
+@-moz-keyframes zhname {
+    0%{ color: #999999}
+    50%{color: #333333}
+    100%{ color: #999999}
+}
+@-webkit-keyframes zhname {
+     0%{ color: #999999}
+     50%{color: #333333}
+     100%{ color: #999999}
+ }
 
 #zh-name::-webkit-input-placeholder {
     color: #555555;
