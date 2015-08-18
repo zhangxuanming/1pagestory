@@ -20,7 +20,7 @@
 
     <!--模板-->
     <script id="pageTpl" type="text/template">
-        <div class="row page page${id} full hidden zh-blue">
+        <div class="row page page${id} full hidden">
             <div class="col-md-12 full" style="position: relative;">
                 <br>
                 <div class="row">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 zh-txt">
                         {@each txt as item,index}
                             {@if item==""}
                                 <br/>
@@ -41,8 +41,7 @@
                 </div>
                 <div class="row zh-option">
                     <div class="col-md-12">
-                        <button class="btn center-block btn-block sb"
-                                style="height: 100px;position: relative;background-color: gold;border: 1px solid rgba(255,255,255,0.5)"></button>
+                        <button class="btn center-block btn-block zh-showoptbtn"></button>
                     </div>
                     <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none;position: fixed;bottom: 0;width: 100%">
                         <br>
@@ -57,9 +56,9 @@
     </script>
 </head>
 
-<body>
+<body class="zh-yellow">
 <div class="container">
-    <div class="row page page0 full zh-yellow">
+    <div class="row page page0 full">
         <div class="col-xs-12 v-center" style="top: 20%">
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
@@ -74,7 +73,7 @@
     <!--剧情会被插入这里-->
 
     <!--结局页-->
-    <div class="row page page-1 full zh-yellow hidden">
+    <div class="row page page-1 full hidden">
         <br>
         <div class="col-xs-12">
             <div class="row">
@@ -147,12 +146,15 @@
             $(document).on({
                 click:function(e){
                     var ob = $(this).parent().siblings(".zh-btnblock");
+	                var _btn = ob.find(".zh-sbtn");
                     var tl = new TimelineMax();
+	                var tl1 = new TimelineMax();
                     $(this).hide();
                     ob.show();
-                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0,x:0},-0.5);
+                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0},-0.5);
+	                tl1.staggerFromTo(_btn,1,{alpha:0,rotationX:360,y:-100},{alpha:1,rotationX:0,y:0,ease:Back.easeOut},0.2);
                 }
-            },'.sb');
+            },'.zh-showoptbtn');
         };
 
         //动作调用
@@ -214,7 +216,7 @@
             totalScore = 0;
             $(".page").fadeOut(500);
             $(".page0").fadeIn(500);
-	        $(".sb").show();
+	        $(".zh-showoptbtn").show();
 	        $(".zh-btnblock").hide();
         };
 

@@ -1,7 +1,6 @@
 html,body {
     height: 100%;
     font-family:"Microsoft Yahei";
-    background-color: #FFCC00;
 }
 .container{
     position: relative;
@@ -39,7 +38,20 @@ html,body {
 }
 
 .zh-sbtn{
-
+    font-size: 1.4em;
+    color: #555555;
+}
+.zh-showoptbtn{
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+    position: relative;
+    background-color: gold;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.75);
 }
 .storytext{
 
@@ -109,4 +121,9 @@ html,body {
 #zh-name:focus{
     outline: none;
     color: azure;
+}
+
+.zh-txt p{
+    font-size: 1.4em;
+    color: #444444;
 }
