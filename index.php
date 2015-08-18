@@ -95,7 +95,6 @@
         <div class="row">
             <br>
             <div class="col-xs-6 col-xs-offset-3">
-<!--                <h4 class="center-block text-center zh-score">恭喜通关啦</h4>-->
                 <button class="btn btn-block btn-default btn-lg zh-restartbtn">重玩一次</button>
             </div>
         </div>
@@ -128,18 +127,26 @@
 	?>
 
     window.onload = function(){
-	    console.log(lastUser);
-	    console.log(lastScore);
         zhLoadStory.init(zhConfig.storyTpl);
-        zhJumpAction.init();
+	    zhModal.init();
         $(".zh-restartbtn").click(function(e){
-            zhJumpAction.restart();
+	        zhModal.restart();
         });
     };
 
-    var zhJumpAction = (function(){
+    var zhModal = (function(){
         var me = {};
         var totalScore = 0;
+	    me.userName = "嗨客";
+	    me.userScore = 0;
+	    //绑定设定用户得分方法
+	    var setUserScore = function(score){
+		    me.userScore = score;
+	    };
+	    //绑定,设定用户名方法
+	    var setUserName = function(usr){
+		    me.userName = usr;
+	    };
 
         //显示跳转按钮
         var showAction = function(){
@@ -165,16 +172,18 @@
                     var np = $(".page"+ t.attr('data-to')); //next page
                     var cp = $('.page'+ t.attr('data-from')); //current page
                     var score = t.attr('data-score');
-                        score = score?parseInt(score):0;
+                        score = score ? parseInt(score) : 0;
                     if(cp.selector==np.selector){
                         return;
                     }
                     totalScore += score;
+	                setUserScore(totalScore); //设定用户得分
                     if (parseInt(t.attr('data-to'))<0){
                         var summaryText = getSummary(totalScore);
-                        $('.zh-totalscore').html(totalScore);
-                        $('.zh-summarytext').html(summaryText.text);
-                        $('.zh-stamp').attr("src","./src/img/badge/"+summaryText.img);
+	                    setSummary(summaryText);
+//                        $('.zh-totalscore').html(totalScore);
+//                        $('.zh-summarytext').html(summaryText.text);
+//                        $('.zh-stamp').attr("src","./src/img/badge/"+summaryText.img);
                     }
                     cp.hide();
                     np.removeClass('hidden');
@@ -183,7 +192,11 @@
                 }
             },".zh-sbtn");
         };
-
+	    var setSummary = function(s){
+		    $('.zh-totalscore').html(s.score);
+		    $('.zh-summarytext').html(s.name +':'+ s.text);
+		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
+	    };
         //计算总结页和展示
         var getSummary = function(score){
             var des = null;
@@ -191,29 +204,35 @@
             $.each(zhConfig.summaryText.scoreSummary,function(i,v){
                 des = (score>= v.from && score<= v.to) ? v.text : null;
                 if (des){
+	                me.name = zhModal.userName;
                     me.text = v.text;
                     me.img = v.stamp;
+	                me.score = score;
                     return false;
                 }
             });
             return me;
         };
 
-	    var nameInit = function(){
+	    var bind_getUserName = function(){
 		    var $nameTxt = $("#zh-name");
+		    var _u = "";
 		    $nameTxt.focus(function(){
 			    $(this).val('');
 		    });
 		    $nameTxt.focusout(function(){
-			    cUser = $.trim($(this).val().length) > 0 ? $.trim($(this).val()) : "嗨客" ;
-			    $(this).val(cUser);
-			    console.log($.trim($(this).val().length > 0));
-			    console.log(cUser);
+			    _u = $.trim($(this).val().length) > 0 ? $.trim($(this).val()) : "嗨客" ;
+			    $(this).val(_u);
+			    setUserName(_u);
 		    });
 	    };
+
         //重玩
         me.restart = function(){
             totalScore = 0;
+	        setUserScore(-1000);
+	        console.log(me.userName);
+	        console.log(me.userScore);
             $(".page").fadeOut(500);
             $(".page0").fadeIn(500);
 	        $(".zh-showoptbtn").show();
@@ -223,7 +242,7 @@
         //初始化
         me.init = function(){
             jump();
-	        nameInit();
+	        bind_getUserName();
             showAction();
         };
         return me;
