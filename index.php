@@ -194,7 +194,7 @@
         };
 	    var setSummary = function(s){
 		    $('.zh-totalscore').html(s.score);
-		    $('.zh-summarytext').html(s.name +':'+ s.text);
+		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +':'+ s.text);
 		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
 	    };
         //计算总结页和展示
