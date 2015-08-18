@@ -50,6 +50,8 @@ html,body {
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 50%;
     animation:sb 1.5s infinite linear;
+    -webkit-animation: sb 1.5s infinite linear;
+    -moz-animation: sb 1.5s infinite linear;
     padding: 10px;
 }
 @keyframes sb {
@@ -107,6 +109,8 @@ html,body {
     width: 100%;
     transition: all 1s ease;
     animation: zhname 2s infinite ease;
+    -webkit-animation: zhname 2s infinite ease;
+    -moz-animation: zhname 2s infinite ease;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
 }
