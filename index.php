@@ -137,15 +137,21 @@
     var zhModal = (function(){
         var me = {};
         var totalScore = 0;
-	    me.userName = "嗨客";
-	    me.userScore = 0;
+	    var _userName = "嗨客";
+	    var _userScore = 0;
 	    //绑定设定用户得分方法
 	    var setUserScore = function(score){
-		    me.userScore = score;
+		    _userScore = score;
 	    };
 	    //绑定,设定用户名方法
 	    var setUserName = function(usr){
-		    me.userName = usr;
+		    _userName = usr;
+	    };
+	    me.userName = function(){
+		    return _userName
+	    };
+	    me.userScore = function(){
+		    return _userScore
 	    };
 
         //显示跳转按钮
@@ -181,9 +187,6 @@
                     if (parseInt(t.attr('data-to'))<0){
                         var summaryText = getSummary(totalScore);
 	                    setSummary(summaryText);
-//                        $('.zh-totalscore').html(totalScore);
-//                        $('.zh-summarytext').html(summaryText.text);
-//                        $('.zh-stamp').attr("src","./src/img/badge/"+summaryText.img);
                     }
                     cp.hide();
                     np.removeClass('hidden');
@@ -204,7 +207,7 @@
             $.each(zhConfig.summaryText.scoreSummary,function(i,v){
                 des = (score>= v.from && score<= v.to) ? v.text : null;
                 if (des){
-	                me.name = zhModal.userName;
+	                me.name = _userName;
                     me.text = v.text;
                     me.img = v.stamp;
 	                me.score = score;
