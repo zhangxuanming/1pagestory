@@ -83,3 +83,30 @@ html,body {
     height: 200px;
     background-position: 0 -398px;
 }
+
+#zh-name {
+    background-color: transparent;
+    border: none;
+    font-size: 1.8em;
+    text-align: center;
+    width: 100%;
+    transition: all 1s ease;
+    animation: zhname 2s infinite ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+}
+
+@keyframes zhname {
+    0%{ color: #999999}
+    50%{color: #333333}
+    100%{ color: #999999}
+}
+
+#zh-name::-webkit-input-placeholder {
+    color: #555555;
+}
+
+#zh-name:focus{
+    outline: none;
+    color: azure;
+}

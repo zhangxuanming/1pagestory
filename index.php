@@ -63,6 +63,9 @@
         <div class="col-xs-12 v-center" style="top: 20%">
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
+	    <div class=" col-xs-12 v-center" style="top: 40%">
+		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
+	    </div>
         <div class="col-xs-6 col-xs-offset-3 v-center">
             <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn" style="font-weight: bold">开始嗨</button>
         </div>
@@ -93,7 +96,7 @@
         <div class="row">
             <br>
             <div class="col-xs-6 col-xs-offset-3">
-                <h4 class="center-block text-center zh-score">恭喜通关啦</h4>
+<!--                <h4 class="center-block text-center zh-score">恭喜通关啦</h4>-->
                 <button class="btn btn-block btn-default btn-lg zh-restartbtn">重玩一次</button>
             </div>
         </div>
@@ -110,86 +113,35 @@
 <!--<script src="js/hammer/hammer.js"></script>-->
 
 <script>
-
-    $(document).ready(function(){
-        var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
-        $.getJSON(sig,function(data){
-            wx.config({
-                debug: true,
-                appId: data.appID,
-                timestamp: data.timestamp,
-                nonceStr: data.nonceStr,
-                signature: data.signature,
-                jsApiList: [
-                    'checkJsApi',
-                    'onMenuShareTimeline',
-                    'onMenuShareAppMessage',
-                    'onMenuShareQQ',
-                    'onMenuShareWeibo'
-                ]
-            });
-        });
-
-        wx.ready(function() {
-            var shareTitle = '字嗨预热版bate1';
-            var shareDesc = '我是一只小鸭子';
-            var shareLink = 'http://wxdev.wordhi.com';
-            var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
-
-//            wx.checkJsApi({
-//                jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-//                success: function(res) {
-//                    // 以键值对的形式返回，可用的api值true，不可用为false
-//                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-//                }
-//            });
-
-            // 分享给朋友事件绑定
-            wx.onMenuShareAppMessage({
-                title: shareTitle,
-                desc: shareDesc,
-                link: shareLink,
-                imgUrl: shareImg
-            });
-
-            // 分享到朋友圈
-            wx.onMenuShareTimeline({
-                title: shareTitle,
-                link: shareLink,
-                imgUrl: shareImg
-            });
-
-            // 分享到QQ
-            wx.onMenuShareQQ({
-                title: shareTitle,
-                desc: shareDesc,
-                link: shareLink,
-                imgUrl: shareImg
-            });
-
-            // 分享到微博
-            wx.onMenuShareWeibo({
-                title: shareTitle,
-                desc: shareDesc,
-                link: shareLink,
-                imgUrl: shareImg
-            });
-        });
-    });
+	var lastUser = null;
+	var lastScore = null;
+	var cUser = null;
+	var cScore = null;
+	//配置页面在config.js
+	//加载页面
+	<?php
+		$name = isset($_GET["name"])?htmlspecialchars(trim($_GET["name"])):null;
+		$score = isset($_GET["s"])?htmlspecialchars(trim($_GET["s"])):null;
+		if($name && $score){
+			echo "lastUser ='".$name."';"."\n";
+			echo "lastScore ='".$score."';"."\n";
+		}
+	?>
 
     window.onload = function(){
-        //配置页面在config.js
-        //加载页面
+	    console.log(lastUser);
+	    console.log(lastScore);
         zhLoadStory.init(zhConfig.storyTpl);
         zhJumpAction.init();
         $(".zh-restartbtn").click(function(e){
             zhJumpAction.restart();
-        })
+        });
     };
 
     var zhJumpAction = (function(){
         var me = {};
         var totalScore = 0;
+
         //显示跳转按钮
         var showAction = function(){
             $(document).on({
@@ -198,10 +150,11 @@
                     var tl = new TimelineMax();
                     $(this).hide();
                     ob.show();
-                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0},-0.5);
+                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0,x:0},-0.5);
                 }
             },'.sb');
         };
+
         //动作调用
         var jump = function(){
             $(".container").on({
@@ -244,18 +197,32 @@
             return me;
         };
 
+	    var nameInit = function(){
+		    var $nameTxt = $("#zh-name");
+		    $nameTxt.focus(function(){
+			    $(this).val('');
+		    });
+		    $nameTxt.focusout(function(){
+			    cUser = $.trim($(this).val().length) > 0 ? $.trim($(this).val()) : "嗨客" ;
+			    $(this).val(cUser);
+			    console.log($.trim($(this).val().length > 0));
+			    console.log(cUser);
+		    });
+	    };
         //重玩
         me.restart = function(){
             totalScore = 0;
-            $(".page").hide();
-            $(".page0").show();
+            $(".page").fadeOut(500);
+            $(".page0").fadeIn(500);
+	        $(".sb").show();
+	        $(".zh-btnblock").hide();
         };
 
         //初始化
         me.init = function(){
             jump();
+	        nameInit();
             showAction();
-
         };
         return me;
     }());
@@ -263,7 +230,6 @@
     //加载剧情
     var zhLoadStory = (function(){
         var me = {};
-        var sarr = [];
         var storyObject = {};
         var tpl = $('#pageTpl').html();
 
@@ -309,6 +275,7 @@
                 st.actions = act;
                 storyObject[i] = st;
             });
+
             //模板装载页面
             var html = '';
             $.each(storyObject,function(i,v){
@@ -326,6 +293,70 @@
         };
         return me
     }());
+
+    $(document).ready(function(){
+	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+	    $.getJSON(sig,function(data){
+		    wx.config({
+			    debug: true,
+			    appId: data.appID,
+			    timestamp: data.timestamp,
+			    nonceStr: data.nonceStr,
+			    signature: data.signature,
+			    jsApiList: [
+				    'checkJsApi',
+				    'onMenuShareTimeline',
+				    'onMenuShareAppMessage',
+				    'onMenuShareQQ',
+				    'onMenuShareWeibo'
+			    ]
+		    });
+	    });
+	    wx.ready(function() {
+		    var shareTitle = '字嗨预热版bate1';
+		    var shareDesc = '我是一只小鸭子';
+		    var shareLink = 'http://wxdev.wordhi.com';
+		    var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
+//            wx.checkJsApi({
+//                jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+//                success: function(res) {
+//                    // 以键值对的形式返回，可用的api值true，不可用为false
+//                    // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+//                }
+//            });
+
+		    // 分享给朋友事件绑定
+		    wx.onMenuShareAppMessage({
+			    title: shareTitle,
+			    desc: shareDesc,
+			    link: shareLink,
+			    imgUrl: shareImg
+		    });
+
+		    // 分享到朋友圈
+		    wx.onMenuShareTimeline({
+			    title: shareTitle,
+			    link: shareLink,
+			    imgUrl: shareImg
+		    });
+
+		    // 分享到QQ
+		    wx.onMenuShareQQ({
+			    title: shareTitle,
+			    desc: shareDesc,
+			    link: shareLink,
+			    imgUrl: shareImg
+		    });
+
+		    // 分享到微博
+		    wx.onMenuShareWeibo({
+			    title: shareTitle,
+			    desc: shareDesc,
+			    link: shareLink,
+			    imgUrl: shareImg
+		    });
+	    });
+    });
 </script>
 </body>
 </html>
