@@ -180,10 +180,10 @@
                         var summaryText = getSummary(totalScore);
 	                    setSummary(summaryText);
                     }
-                    cp.hide();
-                    np.removeClass('hidden');
-                    np.show();
-                    TweenMax.fromTo(np,1,{alpha:0,x:2000},{alpha:1,x:0,ease:Strong.easeOut});
+	                cp.hide();
+	                np.removeClass('hidden');
+	                np.show();
+	                TweenMax.fromTo(np,1,{alpha:0,x:1000},{alpha:1,x:0,ease:Strong.easeOut});
                 }
             },".zh-sbtn");
         };
