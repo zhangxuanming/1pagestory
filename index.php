@@ -126,14 +126,6 @@
 		}
 	?>
 
-    window.onload = function(){
-        zhLoadStory.init(zhConfig.storyTpl);
-	    zhModal.init();
-        $(".zh-restartbtn").click(function(e){
-	        zhModal.restart();
-        });
-    };
-
     var zhModal = (function(){
         var me = {};
         var totalScore = 0;
@@ -381,6 +373,14 @@
 		    });
 	    });
     });
+
+	window.onload = function(){
+		zhLoadStory.init(zhConfig.storyTpl);
+		zhModal.init();
+		$(".zh-restartbtn").click(function(e){
+			zhModal.restart();
+		});
+	};
 </script>
 </body>
 </html>
