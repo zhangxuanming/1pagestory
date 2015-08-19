@@ -46,7 +46,7 @@
                     <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none;position: fixed;bottom: 0;width: 100%">
                         <br>
                         {@each actions as item,index}
-                            <div data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-sbtn">${item.txt}</div>
+                            <button data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-sbtn">${item.txt}</button>
                         {@/each}
                         <br>
                     </div>
@@ -65,8 +65,8 @@
 	    <div class=" col-xs-12 v-center" style="top: 40%">
 		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
 	    </div>
-        <div class="col-xs-6 col-xs-offset-3 v-center">
-            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn" style="font-weight: bold">开始嗨</button>
+        <div class="col-xs-8 col-xs-offset-2 v-center">
+            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn zh-btnstart" style="font-weight: bold">开始嗨</button>
         </div>
     </div>
 

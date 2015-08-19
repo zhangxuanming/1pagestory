@@ -152,3 +152,17 @@ html,body {
     font-size: 1.4em;
     color: #444444;
 }
+
+/*选项按钮*/
+.zh-sbtn{
+    background-color: rgba(0,0,0,0.5);
+    color: #ffcc00;
+    border-radius: 0;
+    border: 2px solid #FFCC00;
+}
+.zh-btnstart{
+    background-color: azure;
+    color: #000000;
+    padding: 20px;
+    font-size: 2em;
+}
