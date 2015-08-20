@@ -20,7 +20,7 @@
 
     <!--模板-->
     <script id="pageTpl" type="text/template">
-        <div class="row page page${id} full hidden">
+        <div class="row page page${id} full zh-hidden">
             <div class="col-md-12 full" style="position: relative;">
                 <br>
                 <div class="row">
@@ -58,7 +58,21 @@
 
 <body class="zh-yellow">
 <div class="container">
-    <div class="row page page0 full">
+<!--	splash页面-->
+	<div class="row page pagesplash full" style="background-color: lawngreen">
+		<div class="col-xs-12 v-center text-center">起始页</div>
+<!--		<div class="col-xs-12 v-center" style="top: 20%">-->
+<!--			<h1 class="center-block text-center">逃离深山</h1>-->
+<!--		</div>-->
+<!--		<div class=" col-xs-12 v-center" style="top: 40%">-->
+<!--			<input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">-->
+<!--		</div>-->
+<!--		<div class="col-xs-8 col-xs-offset-2 v-center">-->
+<!--			<button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn zh-btnstart" style="font-weight: bold">开始嗨</button>-->
+<!--		</div>-->
+	</div>
+<!--	起始页-->
+    <div class="row page page0 full zh-hidden">
         <div class="col-xs-12 v-center" style="top: 20%">
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
@@ -73,7 +87,7 @@
     <!--剧情会被插入这里-->
 
     <!--结局页-->
-    <div class="row page page-1 full hidden">
+    <div class="row page pageend full zh-hidden">
         <br>
         <div class="col-xs-12">
             <div class="row">
@@ -147,7 +161,7 @@
 	    };
 
         //显示跳转按钮
-        var showAction = function(){
+        var binding_showAction = function(){
             $(document).on({
                 click:function(e){
                     var ob = $(this).parent().siblings(".zh-btnblock");
@@ -176,12 +190,12 @@
                     }
                     totalScore += score;
 	                setUserScore(totalScore); //设定用户得分
-                    if (parseInt(t.attr('data-to'))<0){
+                    if (t.attr('data-to') == "end"){
                         var summaryText = getSummary(totalScore);
 	                    setSummary(summaryText);
                     }
 	                cp.hide();
-	                np.removeClass('hidden');
+	                np.removeClass('zh-hidden');
 	                np.show();
 	                TweenMax.fromTo(np,1,{alpha:0,x:1000},{alpha:1,x:0,ease:Strong.easeOut});
                 }
@@ -209,7 +223,7 @@
             return me;
         };
 
-	    var bind_getUserName = function(){
+	    var binding_getUserName = function(){
 		    var $nameTxt = $("#zh-name");
 		    var _u = "";
 		    $nameTxt.focus(function(){
@@ -222,12 +236,20 @@
 		    });
 	    };
 
+	    var showSplash = function(){
+		    $(".pagesplash").click(function(e){
+
+//			    $(".page0").removeClass("hidden").hide();
+//			    $(".page0").fadeIn(1000);
+			    var tl = new TimelineMax();
+			    tl.fromTo($(this),0.5,{alpha:1},{alpha:0,display:'none'})
+				    .fromTo($(".page0"),1,{alpha:0},{alpha:1,display:'block'});
+		    });
+	    };
         //重玩
         me.restart = function(){
             totalScore = 0;
 	        setUserScore(-1000);
-	        console.log(me.userName);
-	        console.log(me.userScore);
             $(".page").fadeOut(500);
             $(".page0").fadeIn(500);
 	        $(".zh-showoptbtn").show();
@@ -236,9 +258,10 @@
 
         //初始化
         me.init = function(){
+	        showSplash();
             jump();
-	        bind_getUserName();
-            showAction();
+	        binding_getUserName();
+	        binding_showAction();
         };
         return me;
     }());
