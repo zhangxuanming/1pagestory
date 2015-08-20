@@ -61,17 +61,20 @@
 <!--	splash页面-->
 	<div class="row page pagesplash full">
 		<div class="col-xs-12 v-center ">
-			<img class="splash-logo" src="src/img/splash/mr.png" />
+			<img class="splash-logo" src="src/img/splash/bg2.png" />
 		</div>
-		<div class="col-xs-12 v-center">
-			<img class="splash-zihai" src="src/img/splash/zihai.png" />
-		</div>
-		<div class="col-xs-12 v-center">
-			<img class="splash-divider" src="src/img/splash/slogan_divider.png" />
-		</div>
-		<div class="col-xs-12 v-center">
-			<img class="splash-block" src="src/img/splash/block.png" />
-		</div>
+<!--		<div class="col-xs-12 v-center ">-->
+<!--			<img class="splash-logo" src="src/img/splash/mr.png" />-->
+<!--		</div>-->
+<!--		<div class="col-xs-12 v-center">-->
+<!--			<img class="splash-zihai" src="src/img/splash/zihai.png" />-->
+<!--		</div>-->
+<!--		<div class="col-xs-12 v-center">-->
+<!--			<img class="splash-divider" src="src/img/splash/slogan_divider.png" />-->
+<!--		</div>-->
+<!--		<div class="col-xs-12 v-center">-->
+<!--			<img class="splash-block" src="src/img/splash/block.png" />-->
+<!--		</div>-->
 	</div>
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">

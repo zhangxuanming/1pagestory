@@ -218,10 +218,11 @@ html,body {
     right: 0;
 }
 .splash-logo{
-    width: 200px;
-    transform: translateY(-80%);
-    -webkit-transform: translateY(-80%);
-    -moz-transform: translateY(-80%);
+    width: 100%;
+    /*width: 200px;*/
+    /*transform: translateY(-80%);*/
+    /*-webkit-transform: translateY(-80%);*/
+    /*-moz-transform: translateY(-80%);*/
 }
 .splash-zihai{
     width: 40%;
