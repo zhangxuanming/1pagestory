@@ -220,16 +220,24 @@ html,body {
 .splash-logo{
     width: 200px;
     transform: translateY(-60%);
+    -webkit-transform: translateY(-60%);
+    -moz-transform: translateY(-60%);
 }
 .splash-zihai{
     width: 40%;
     transform: translateY(80%);
+    -webkit-transform: translateY(80%);
+    -moz-transform: translateY(80%);
 }
 .splash-divider{
     width: 100%;
     transform: translateY(800%);
+    -webkit-transform: translateY(-800%);
+    -moz-transform: translateY(-800%);
 }
 .splash-block{
     width: 40%;
     transform: translateY(600%);
+    -webkit-transform: translateY(-600%);
+    -moz-transform: translateY(-600%);
 }
