@@ -78,7 +78,7 @@
         <div class="col-xs-12 v-center" style="top: 20%">
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
-	    <div class=" col-xs-12 v-center" style="transform: translateY(-250%);">
+	    <div class=" col-xs-12 v-center" style="top:35%">
 		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
 	    </div>
         <div class="col-xs-8 col-xs-offset-2 v-center">
