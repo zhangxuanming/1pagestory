@@ -36,17 +36,55 @@ html,body {
 .zh-yellow{
     background-color: #FFCC00;
 }
-
-.zh-sbtn{
-    font-size: 1.4em;
-    color: #555555;
+.zh-yellow1{
+    background-color: #fdf6d8;
 }
+.zh-black{
+    background-color: #333333;
+}
+.zh-t-white{
+    color: azure;
+}
+.zh-t-yellow{
+    color: #FFCC00;
+}
+.zh-t-black{
+    color: #333333;
+}
+
+/*选项按钮*/
+.zh-btn{
+    border-radius: 0;
+}
+.zh-btn:active:hover{
+    outline: none;
+    background-color: rgba(255,210,0,0.8);
+}
+.zh-sbtn{
+    background-color: rgba(0,0,0,0.5);
+    color: #ffcc00;
+    border: 2px solid #FFCC00;
+    font-size: 1.4em;
+}
+.zh-btnstart{
+    background-color: azure;
+    color: #000000;
+    padding: 20px;
+    font-size: 2em;
+}
+.zh-btnblock{
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    bottom: 0;
+    display: none;
+    width: 100%;
+}
+/*点击按钮*/
 .zh-showoptbtn{
     height: 100px;
     width: 100px;
     min-width: 100px;
     position: relative;
-    background-color: gold;
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 50%;
     animation:sb 1.5s infinite linear;
@@ -55,17 +93,18 @@ html,body {
     padding: 10px;
 }
 @keyframes sb {
-    0%{border-width:20px;border-color: transparent}
+    0%{border-width:10px;border-color: transparent}
     100%{border-width:0;border-color: azure}
 }
 @-moz-keyframes sb {
-    0%{border-width:20px;border-color: transparent}
+    0%{border-width:10px;border-color: transparent}
     100%{border-width:0;border-color: azure}
 }
 @-webkit-keyframes sb {
-    0%{border-width:20px;border-color: transparent}
+    0%{border-width:10px;border-color: transparent}
     100%{border-width:0;border-color: azure}
 }
+
 .storytext{
 
 }
@@ -150,23 +189,47 @@ html,body {
 
 .zh-txt p{
     font-size: 1.4em;
-    color: #444444;
-}
-
-/*选项按钮*/
-.zh-sbtn{
-    background-color: rgba(0,0,0,0.5);
-    color: #ffcc00;
-    border-radius: 0;
-    border: 2px solid #FFCC00;
-}
-.zh-btnstart{
-    background-color: azure;
-    color: #000000;
-    padding: 20px;
-    font-size: 2em;
+    /*color: #444444;*/
 }
 
 .zh-hidden{
     display: none;
+}
+
+/*helper*/
+.zh-blur{
+    filter: blur(2px);
+    -webkit-filter:blur(2px);
+    -moz-filter:blur(2px);
+}
+
+/*splash页面*/
+.pagesplash{
+    background-color: #ffe680;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/src/img/splash/bg1.png");
+}
+.pagesplash *{
+    display: block;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.splash-logo{
+    width: 200px;
+    transform: translateY(-60%);
+}
+.splash-zihai{
+    width: 40%;
+    transform: translateY(80%);
+}
+.splash-divider{
+    width: 100%;
+    transform: translateY(800%);
+}
+.splash-block{
+    width: 40%;
+    transform: translateY(600%);
 }

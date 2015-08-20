@@ -20,33 +20,33 @@
 
     <!--模板-->
     <script id="pageTpl" type="text/template">
-        <div class="row page page${id} full zh-hidden">
+        <div class="row page page${id} full zh-hidden zh-black">
             <div class="col-md-12 full" style="position: relative;">
                 <br>
                 <div class="row">
                     <div class="col-sm-12">
-                        <img src="src/img/${img}" class="img-responsive center-block" alt="Responsive image" >
+                        <img src="src/img/${img}" class="img-responsive center-block zh-blur" alt="Responsive image" >
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top: 1em">
                     <div class="col-sm-12 zh-txt">
                         {@each txt as item,index}
                             {@if item==""}
                                 <br/>
                             {@else}
-                                <p>${item}</p>
+                                <p class="zh-t-white">${item}</p>
                             {@/if}
                         {@/each}
                     </div>
                 </div>
                 <div class="row zh-option">
                     <div class="col-md-12">
-                        <button class="btn center-block btn-block zh-showoptbtn"></button>
+                        <button class="btn center-block btn-block zh-btn zh-showoptbtn zh-black"></button>
                     </div>
-                    <div class="col-sm-12 zh-btnblock" style="background-color: rgba(0,0,0,0.6);display: none;position: fixed;bottom: 0;width: 100%">
+                    <div class="col-sm-12 zh-btnblock">
                         <br>
                         {@each actions as item,index}
-                            <button data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-sbtn">${item.txt}</button>
+                            <button data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-btn zh-sbtn">${item.txt}</button>
                         {@/each}
                         <br>
                     </div>
@@ -56,38 +56,40 @@
     </script>
 </head>
 
-<body class="zh-yellow">
+<body class="zh-black">
 <div class="container">
 <!--	splash页面-->
-	<div class="row page pagesplash full" style="background-color: lawngreen">
-		<div class="col-xs-12 v-center text-center">起始页</div>
-<!--		<div class="col-xs-12 v-center" style="top: 20%">-->
-<!--			<h1 class="center-block text-center">逃离深山</h1>-->
-<!--		</div>-->
-<!--		<div class=" col-xs-12 v-center" style="top: 40%">-->
-<!--			<input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">-->
-<!--		</div>-->
-<!--		<div class="col-xs-8 col-xs-offset-2 v-center">-->
-<!--			<button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn zh-btnstart" style="font-weight: bold">开始嗨</button>-->
-<!--		</div>-->
+	<div class="row page pagesplash full">
+		<div class="col-xs-12 v-center">
+			<img class="splash-logo" src="src/img/splash/mr.png" />
+		</div>
+		<div class="col-xs-12 v-center">
+			<img class="splash-zihai" src="src/img/splash/zihai.png" />
+		</div>
+		<div class="col-xs-12 v-center">
+			<img class="splash-divider" src="src/img/splash/slogan_divider.png" />
+		</div>
+		<div class="col-xs-12 v-center">
+			<img class="splash-block" src="src/img/splash/block.png" />
+		</div>
 	</div>
 <!--	起始页-->
-    <div class="row page page0 full zh-hidden">
+    <div class="row page pagestart full zh-hidden zh-yellow">
         <div class="col-xs-12 v-center" style="top: 20%">
             <h1 class="center-block text-center">逃离深山</h1>
         </div>
-	    <div class=" col-xs-12 v-center" style="top: 40%">
+	    <div class=" col-xs-12 v-center" style="transform: translateY(-250%);">
 		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
 	    </div>
         <div class="col-xs-8 col-xs-offset-2 v-center">
-            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-sbtn zh-btnstart" style="font-weight: bold">开始嗨</button>
+            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btnstart" style="font-weight: bold">开始嗨</button>
         </div>
     </div>
 
     <!--剧情会被插入这里-->
 
     <!--结局页-->
-    <div class="row page pageend full zh-hidden">
+    <div class="row page pageend full zh-hidden zh-yellow">
         <br>
         <div class="col-xs-12">
             <div class="row">
@@ -109,7 +111,7 @@
         <div class="row">
             <br>
             <div class="col-xs-6 col-xs-offset-3">
-                <button class="btn btn-block btn-default btn-lg zh-restartbtn">重玩一次</button>
+                <button class="btn btn-block btn-default btn-lg zh-btn zh-restartbtn">重玩一次</button>
             </div>
         </div>
     </div>
@@ -140,7 +142,7 @@
 		}
 	?>
 
-    var zhModal = (function(){
+    var zhGameLogic = (function(){
         var me = {};
         var totalScore = 0;
 	    var _userName = "嗨客";
@@ -160,23 +162,26 @@
 		    return _userScore
 	    };
 
-        //显示跳转按钮
-        var binding_showAction = function(){
-            $(document).on({
-                click:function(e){
-                    var ob = $(this).parent().siblings(".zh-btnblock");
-	                var _btn = ob.find(".zh-sbtn");
-                    var tl = new TimelineMax();
-	                var tl1 = new TimelineMax();
-                    $(this).hide();
-                    ob.show();
-                    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0},-0.5);
-	                tl1.staggerFromTo(_btn,1,{alpha:0,rotationX:360,y:-100},{alpha:1,rotationX:0,y:0,ease:Back.easeOut},0.2);
-                }
-            },'.zh-showoptbtn');
-        };
+//	    字嗨splash页面
+	    var showSplash = function(){
+		    $(".pagesplash").click(function(e){
+			    var tl = new TimelineMax();
+			    tl.fromTo($(this),0.5,{alpha:1},{alpha:0,display:'none'})
+				    .fromTo($(".pagestart"),1,{alpha:0},{alpha:1,display:'block'});
+		    });
+	    };
+//	    游戏开始页面
+	    var startGame = function(){
+		    $(".zh-btnstart").click(function(){
+			    var $page1 = $(".page1");
+			    var $pageStart = $(".pagestart");
+			    var tl = new TimelineMax();
+			    tl.fromTo($pageStart,0,{},{display:'none'})
+			        .fromTo($page1,1,{alpha:0,scale:2},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
+		    });
+	    };
 
-        //动作调用
+        //剧情页面切换动作调用
         var jump = function(){
             $(".container").on({
                 click:function(e){
@@ -194,10 +199,13 @@
                         var summaryText = getSummary(totalScore);
 	                    setSummary(summaryText);
                     }
-	                cp.hide();
-	                np.removeClass('zh-hidden');
-	                np.show();
-	                TweenMax.fromTo(np,1,{alpha:0,x:1000},{alpha:1,x:0,ease:Strong.easeOut});
+//	                cp.hide();
+	                var tl = new TimelineMax();
+	                tl.fromTo(cp,0,{alpha:1},{alpha:0,ease:Strong.easeOut,display:'none'})
+	                    .fromTo(np,1,{alpha:0,scale:1.5},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
+//	                np.removeClass('zh-hidden');
+//	                np.show();
+//	                TweenMax.fromTo(np,1,{alpha:0,x:1000},{alpha:1,x:0,ease:Strong.easeOut});
                 }
             },".zh-sbtn");
         };
@@ -223,6 +231,22 @@
             return me;
         };
 
+	    //显示跳转按钮
+	    var binding_showAction = function(){
+		    $(document).on({
+			    click:function(e){
+				    var ob = $(this).parent().siblings(".zh-btnblock");
+				    var _btn = ob.find(".zh-sbtn");
+				    var tl = new TimelineMax();
+				    var tl1 = new TimelineMax();
+				    $(this).hide();
+				    ob.show();
+				    tl.fromTo(ob,0.5,{alpha:0,y:400},{alpha:1,y:0},-0.5);
+				    tl1.staggerFromTo(_btn,1.5,{alpha:0,rotationX:360,y:-100},{alpha:1,rotationX:0,y:0,ease:Back.easeOut},0.2);
+			    }
+		    },'.zh-showoptbtn');
+	    };
+
 	    var binding_getUserName = function(){
 		    var $nameTxt = $("#zh-name");
 		    var _u = "";
@@ -236,28 +260,19 @@
 		    });
 	    };
 
-	    var showSplash = function(){
-		    $(".pagesplash").click(function(e){
-
-//			    $(".page0").removeClass("hidden").hide();
-//			    $(".page0").fadeIn(1000);
-			    var tl = new TimelineMax();
-			    tl.fromTo($(this),0.5,{alpha:1},{alpha:0,display:'none'})
-				    .fromTo($(".page0"),1,{alpha:0},{alpha:1,display:'block'});
-		    });
-	    };
         //重玩
         me.restart = function(){
             totalScore = 0;
 	        setUserScore(-1000);
             $(".page").fadeOut(500);
-            $(".page0").fadeIn(500);
+            $(".pagestart").fadeIn(500);
 	        $(".zh-showoptbtn").show();
 	        $(".zh-btnblock").hide();
         };
 
         //初始化
         me.init = function(){
+	        startGame();
 	        showSplash();
             jump();
 	        binding_getUserName();
@@ -320,7 +335,7 @@
             $.each(storyObject,function(i,v){
                 html += randerPage(v);
             });
-            $(".page0").after(html);
+            $(".pagestart").after(html);
         };
 
         var randerPage = function(data){
@@ -399,9 +414,9 @@
 
 	window.onload = function(){
 		zhLoadStory.init(zhConfig.storyTpl);
-		zhModal.init();
+		zhGameLogic.init();
 		$(".zh-restartbtn").click(function(e){
-			zhModal.restart();
+			zhGameLogic.restart();
 		});
 	};
 </script>
