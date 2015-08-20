@@ -219,9 +219,9 @@ html,body {
 }
 .splash-logo{
     width: 200px;
-    transform: translateY(-60%);
-    -webkit-transform: translateY(-60%);
-    -moz-transform: translateY(-60%);
+    transform: translateY(-80%);
+    -webkit-transform: translateY(-80%);
+    -moz-transform: translateY(-80%);
 }
 .splash-zihai{
     width: 40%;
