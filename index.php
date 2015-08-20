@@ -60,7 +60,7 @@
 <div class="container">
 <!--	splash页面-->
 	<div class="row page pagesplash full">
-		<div class="col-xs-12 v-center">
+		<div class="col-xs-12 v-center ">
 			<img class="splash-logo" src="src/img/splash/mr.png" />
 		</div>
 		<div class="col-xs-12 v-center">
