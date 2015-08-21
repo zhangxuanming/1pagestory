@@ -394,6 +394,7 @@
 			    },
 			    trigger:function(){
 				    this.title = zhGameLogic.userName();
+				    this.desc = zhGameLogic.userName();
 				    alert(zhGameLogic.userName());
 			    }
 		    });
