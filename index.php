@@ -389,13 +389,19 @@
 			    desc: shareDesc,
 			    link: shareLink,
 			    imgUrl: shareImg
+			    success:function(res){
+				    alert(123);
+			    }
 		    });
 
 		    // 分享到朋友圈
 		    wx.onMenuShareTimeline({
-			    title: shareTitle,
+			    title: zhGameLogic.userName(),
 			    link: shareLink,
 			    imgUrl: shareImg
+			    success:function(res){
+				    alert(456);
+			    }
 		    });
 
 		    // 分享到QQ
