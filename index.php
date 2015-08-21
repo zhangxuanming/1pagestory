@@ -390,7 +390,11 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    success:function(res){
-				    alert(123);
+//				    alert(123);
+			    },
+			    trigger:function(){
+				    this.title = zhGameLogic.userName();
+				    alert(zhGameLogic.userName());
 			    }
 		    });
 
