@@ -60,9 +60,15 @@ html,body {
 .zh-btn{
     border-radius: 0;
 }
-.zh-btn:active:hover{
+.zh-btn:active:hover:focus{
     outline: none;
     background-color: rgba(255,210,0,0.8);
+}
+.zh-btn-yellow{
+    background-color: rgba(0,0,0,0.5);
+    color: #ffcc00;
+    border: 2px solid #FFCC00;
+    font-size: 1.4em;
 }
 .zh-sbtn{
     background-color: rgba(0,0,0,0.5);
@@ -71,9 +77,8 @@ html,body {
     font-size: 1.4em;
 }
 .zh-btnstart{
-    background-color: azure;
-    color: #000000;
-    padding: 20px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 15px;
     font-size: 2em;
 }
 .zh-btnblock{
@@ -167,19 +172,19 @@ html,body {
 }
 
 @keyframes zhname {
-    0%{ color: #999999}
+    0%{ color: #FFCC00}
     50%{color: #333333}
-    100%{ color: #999999}
+    100%{ color: #FFCC00}
 }
 @-moz-keyframes zhname {
-    0%{ color: #999999}
+    0%{ color: #FFCC00}
     50%{color: #333333}
-    100%{ color: #999999}
+    100%{ color: #FFCC00}
 }
 @-webkit-keyframes zhname {
-     0%{ color: #999999}
-     50%{color: #333333}
-     100%{ color: #999999}
+    0%{ color: #FFCC00}
+    50%{color: #333333}
+    100%{ color: #FFCC00}
  }
 
 #zh-name::-webkit-input-placeholder {
@@ -245,4 +250,7 @@ html,body {
     transform: translateY(600%);
     -webkit-transform: translateY(600%);
     -moz-transform: translateY(600%);
+}
+.pagestart{
+    background:url(../src/img/startbg.png);
 }

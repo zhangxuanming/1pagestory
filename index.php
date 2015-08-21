@@ -79,14 +79,20 @@
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">
         <div class="col-xs-12 v-center" style="top: 20%">
-            <h1 class="center-block text-center">逃离深山</h1>
+	        <h3 class="center-block text-center zh-t-yellow">嗨！冒险</h3>
+	        <h4 class="center-block text-center zh-t-yellow">之</h4>
+            <h1 class="center-block text-center zh-t-yellow">逃离深山</h1>
         </div>
-	    <div class=" col-xs-12 v-center" style="top:35%">
+<!--	    <div class=" col-xs-12 v-center" style="top:35%">-->
+<!--		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">-->
+<!--	    </div>-->
+<!--        <div class="col-xs-8 col-xs-offset-2 v-center">-->
+<!--            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btn-yellow zh-btnstart" style="font-weight: bold">开始嗨</button>-->
+<!--        </div>-->
+	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;height: 30%;background-color: rgba(0,0,0,0.5)">
 		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
+		    <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btn-yellow zh-btnstart" style="font-weight: bold">开始嗨</button>
 	    </div>
-        <div class="col-xs-8 col-xs-offset-2 v-center">
-            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btnstart" style="font-weight: bold">开始嗨</button>
-        </div>
     </div>
 
     <!--剧情会被插入这里-->
