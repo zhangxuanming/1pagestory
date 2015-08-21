@@ -370,7 +370,7 @@
 		    });
 	    });
 	    wx.ready(function() {
-		    var shareTitle = zhGameLogic.userName();
+		    var shareTitle = "嗨客";
 		    var shareDesc = '我是一只小鸭子';
 		    var shareLink = 'http://wxdev.wordhi.com';
 		    var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
@@ -384,7 +384,7 @@
 
 		    // 分享给朋友事件绑定
 		    wx.onMenuShareAppMessage({
-			    title: shareTitle,
+			    title: zhGameLogic.userName(),
 			    desc: shareDesc,
 			    link: shareLink,
 			    imgUrl: shareImg
