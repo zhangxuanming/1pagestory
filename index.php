@@ -56,7 +56,7 @@
     </script>
 </head>
 
-<body class="zh-black">
+<body class="zh-black" ontouchstart="">
 <div class="container">
 <!--	splash页面-->
 	<div class="row page pagesplash full">
