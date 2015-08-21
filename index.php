@@ -159,7 +159,6 @@
 		    _userName = usr;
 	    };
 	    me.userName = function(){
-		    alert(_userName);
 		    return _userName
 	    };
 	    me.userScore = function(){
@@ -371,8 +370,8 @@
 		    });
 	    });
 	    wx.ready(function() {
-		    var shareTitle = "嗨客";
-		    var shareDesc = '我是一只小鸭子';
+		    var shareTitle = "拐卖小朋友";
+		    var shareDesc = '你要逃离深山，看你啦';
 		    var shareLink = 'http://wxdev.wordhi.com';
 		    var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
             wx.checkJsApi({
@@ -401,11 +400,12 @@
 
 		    // 分享到朋友圈
 		    wx.onMenuShareTimeline({
-			    title: zhGameLogic.userName(),
+			    title: shareTitle,
 			    link: shareLink,
 			    imgUrl: shareImg,
-			    success:function(res){
-				    alert(456);
+			    trigger:function(res){
+				    this.title = zhGameLogic.userName();
+				    this.link = shareLink+'?name='+zhGameLogic.userName();
 			    }
 		    });
 
