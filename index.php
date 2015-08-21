@@ -386,7 +386,7 @@
 		    // 分享给朋友事件绑定
 		    wx.onMenuShareAppMessage({
 			    title: zhGameLogic.userName(),
-			    desc: shareDesc,
+			    title: zhGameLogic.userName(),
 			    link: shareLink,
 			    imgUrl: shareImg
 			    success:function(res){
