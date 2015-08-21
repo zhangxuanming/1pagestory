@@ -398,7 +398,7 @@
 		    wx.onMenuShareTimeline({
 			    title: zhGameLogic.userName(),
 			    link: shareLink,
-			    imgUrl: shareImg
+			    imgUrl: shareImg,
 			    success:function(res){
 				    alert(456);
 			    }
