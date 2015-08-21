@@ -159,6 +159,7 @@
 		    _userName = usr;
 	    };
 	    me.userName = function(){
+		    alert(_userName);
 		    return _userName
 	    };
 	    me.userScore = function(){
