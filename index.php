@@ -368,7 +368,6 @@
 				    'onMenuShareWeibo'
 			    ]
 		    });
-		    alert(123);
 	    });
 	    wx.ready(function() {
 		    var shareTitle = '字嗨预热版bate1';
