@@ -370,7 +370,7 @@
 		    });
 	    });
 	    wx.ready(function() {
-		    var shareTitle = '字嗨预热版bate1';
+		    var shareTitle = zhGameLogic.userName();
 		    var shareDesc = '我是一只小鸭子';
 		    var shareLink = 'http://wxdev.wordhi.com';
 		    var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
