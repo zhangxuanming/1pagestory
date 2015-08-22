@@ -481,7 +481,8 @@
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
-				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
+				    alert(zhGameLogic.userName());
+//				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
@@ -493,7 +494,8 @@
 			    trigger:function(res){
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = zhGameLogic.userBadge();
-				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
+				    alert(zhGameLogic.userName());
+//				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
