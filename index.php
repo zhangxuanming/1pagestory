@@ -482,6 +482,7 @@
 				    this.imgUrl = zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
 				    alert(zhGameLogic.userName());
+				    this.link = shareLink+'?name='+zhGameLogic.userName();
 //				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
@@ -495,6 +496,7 @@
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = zhGameLogic.userBadge();
 				    alert(zhGameLogic.userName());
+				    this.link = shareLink+'?name='+zhGameLogic.userName();
 //				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
