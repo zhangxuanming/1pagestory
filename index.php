@@ -530,6 +530,9 @@
 		$(".zh-restartbtn").click(function(e){
 			zhGameLogic.restart();
 		});
+		$(".zh-btnwant").click(function(e){
+			zhGameLogic.restart();
+		})
 	};
 </script>
 </body>
