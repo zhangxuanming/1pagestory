@@ -58,40 +58,52 @@
 
 <body class="zh-black" ontouchstart="">
 <div class="container">
+<!--	上个用户页面-->
+	<div class="row page pagelastuser full zh-hidden">
+		<div class="col-xs-12" style="margin-top: 2em">
+			<img class="himg" src="src/img/bg1.png" />
+		</div>
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-3">
+					<img src="./src/img/badge/kirakiraeyes.png" class="img-responsive img-circle" style="border:2px solid #ffff00;align:middle;" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h4 id="lastusername"></h4>
+					<h4>在字嗨逃离深山 大冒险中</h4>
+					<h4 id="lastuserdes">在字嗨逃离深山 大冒险中</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
+			<div class="row">
+				<button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-default btn-lg zh-btn zh-btn-yellow zh-btnwant"
+				        style="font-weight: bold;">我也要玩</button>
+			</div>
+		</div>
+	</div>
 <!--	splash页面-->
-	<div class="row page pagesplash full">
+	<div class="row page pagesplash full zh-hidden">
 		<div class="col-xs-12 v-center ">
 			<img class="splash-logo" src="src/img/splash/bg2.png" />
 		</div>
-<!--		<div class="col-xs-12 v-center ">-->
-<!--			<img class="splash-logo" src="src/img/splash/mr.png" />-->
-<!--		</div>-->
-<!--		<div class="col-xs-12 v-center">-->
-<!--			<img class="splash-zihai" src="src/img/splash/zihai.png" />-->
-<!--		</div>-->
-<!--		<div class="col-xs-12 v-center">-->
-<!--			<img class="splash-divider" src="src/img/splash/slogan_divider.png" />-->
-<!--		</div>-->
-<!--		<div class="col-xs-12 v-center">-->
-<!--			<img class="splash-block" src="src/img/splash/block.png" />-->
-<!--		</div>-->
 	</div>
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">
-        <div class="col-xs-12 v-center" style="top: 20%">
-	        <h3 class="center-block text-center zh-t-yellow">嗨！冒险</h3>
-	        <h4 class="center-block text-center zh-t-yellow">之</h4>
-            <h1 class="center-block text-center zh-t-yellow">逃离深山</h1>
+        <div class="col-xs-12 v-center zh-story-title" style="top: 20%">
+	        <h3 class="center-block text-center zh-t-white">嗨！冒险 之</h3>
+            <h1 class="center-block text-center zh-t-white">逃离深山</h1>
         </div>
-<!--	    <div class=" col-xs-12 v-center" style="top:35%">-->
-<!--		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">-->
-<!--	    </div>-->
-<!--        <div class="col-xs-8 col-xs-offset-2 v-center">-->
-<!--            <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btn-yellow zh-btnstart" style="font-weight: bold">开始嗨</button>-->
-<!--        </div>-->
-	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;height: 30%;background-color: rgba(0,0,0,0.5)">
-		    <input id="zh-name" type="text" value="嗨客" placeholder="你叫啥？">
-		    <button data-from="0" data-to="1" class="btn btn-default btn-block btn-lg zh-btn zh-btn-yellow zh-btnstart" style="font-weight: bold">开始嗨</button>
+	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
+		    <div class="row zh-name-wrap">
+			    <input id="zh-name" class="" style="margin-bottom: 20px" type="text" maxlength="8" value="你叫啥？" placeholder="你叫啥？">
+		    </div>
+		    <div class="row">
+			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-default btn-lg zh-btn zh-btn-yellow zh-btnstart"
+			            style="font-weight: bold;">开始嗨</button>
+		    </div>
 	    </div>
     </div>
 
@@ -137,25 +149,116 @@
 
 <script>
 	var lastUser = null;
-	var lastScore = null;
+	var lastDes = null;
 	var cUser = null;
 	var cScore = null;
 	//配置页面在config.js
 	//加载页面
 	<?php
 		$name = isset($_GET["name"])?htmlspecialchars(trim($_GET["name"])):null;
-		$score = isset($_GET["s"])?htmlspecialchars(trim($_GET["s"])):null;
-		if($name && $score){
+		$des = isset($_GET["des"])?htmlspecialchars(trim($_GET["des"])):null;
+		if($name && $des){
 			echo "lastUser ='".$name."';"."\n";
-			echo "lastScore ='".$score."';"."\n";
+			echo "lastDes ='".$des."';"."\n";
 		}
 	?>
 
-    var zhGameLogic = (function(){
+	//加载剧情
+	var zhLoadStory = (function(){
+		var me = {};
+		var storyObject = {};
+		var _logicModal = null;
+		var _tplUrl = "";
+		var tpl = $('#pageTpl').html();
+
+		var randerPage = function(data){
+			return juicer(tpl,data);
+		};
+
+		function ajaxLoadStory(){
+			var storyTpl = {},
+				summaryTpl = {};
+			$.get(_tplUrl,function(data){
+				if(!data){
+					return false
+				}
+				var t = $(data);
+				storyTpl = t.filter("#stories").find("section");
+				summaryTpl = t.filter("#summary");
+				templateToJson(storyTpl);
+
+				//载入游戏逻辑modal
+				_logicModal.init();
+			});
+		}
+
+		var templateToJson = function(storiesBlock){
+			//template to object
+			$.each(storiesBlock,function(i,v){
+				var st = {};
+				var act = [];//actions
+				var d = $(v);
+				st.id = d.attr("id");
+				st.img = d.find("img")? d.find("img").attr("data-img"): null;
+				var _textLines = d.find('[data-txt=story]').find("p");
+				st.txt = {};
+				$.each(_textLines,function(i,v){
+					var a = $(v).text();
+					st.txt[i] = $.trim(a);
+				});
+				if (d.find("button")){
+					$.each(d.find("button"),function(i,v){
+						var btn = {};
+						var adom = $(v); //action dom
+						btn.from = st.id;
+						btn.to = adom.attr("data-to");
+						btn.score = adom.attr("data-score");
+						btn.txt = adom.text();
+						act.push(btn);
+					})
+				}
+				st.actions = act;
+				storyObject[i] = st;
+			});
+
+			//模板装载页面
+			var html = '';
+			$.each(storyObject,function(i,v){
+				html += randerPage(v);
+			});
+			$(".pagestart").after(html);
+		};
+
+		me.init = function() {
+			ajaxLoadStory();
+		};
+		me.setTemplate = function(tplUrl){
+			_tplUrl = tplUrl;
+		};
+		me.setLogicModal = function(logicModal){
+			_logicModal = logicModal;
+		};
+		return me
+	}());
+
+	//游戏逻辑
+    var zhGameLogic = (function(option){
+	    var _opt = {
+		    "page":".page"
+	    };
+	    if (option){
+		    _opt = option
+	    }
         var me = {};
         var totalScore = 0;
 	    var _userName = "嗨客";
 	    var _userScore = 0;
+	    var _userDes = "";
+	    var _userBadge = "";
+
+	    var _lastUserName = null;
+	    var _lastUserDes = null;
+
 	    //绑定设定用户得分方法
 	    var setUserScore = function(score){
 		    _userScore = score;
@@ -164,14 +267,49 @@
 	    var setUserName = function(usr){
 		    _userName = usr;
 	    };
+	    var setUserDes = function(des){
+		    _userDes = des;
+	    };
+	    var setUserBadge = function(badge){
+		    _userBadge = badge;
+	    };
 	    me.userName = function(){
-		    return _userName
+		    return _userName;
 	    };
 	    me.userScore = function(){
-		    return _userScore
+		    return _userScore;
+	    };
+	    me.userDes = function(){
+		    return _userDes;
+	    };
+	    me.userBadge = function(){
+		    return _userBadge;
+	    };
+	    //设定上个用户名
+	    me.setLastUserName = function(lusername){
+		    _lastUserName = lusername;
+	    };
+	    //设定上个用户分数
+	    me.setLastUserScore = function(luserDes){
+		    _lastUserDes = luserDes;
 	    };
 
-//	    字嗨splash页面
+	    //展示上个玩家页面
+	    me.showLastUserResult = function(lastUser,lastDes){
+		    var $lastuserpage = $(".pagelastuser");
+		    var $splashpage =  $(".pagesplash");
+		    if (!lastUser || !lastDes) {
+			    $splashpage.fadeIn(1000);
+			    return false;
+		    }
+		    lastUser=decodeURIComponent(atob(lastUser));
+		    lastDes=decodeURIComponent(atob(lastDes));
+		    $("#lastusername").html(lastUser);
+		    $("#lastuserdes").html(lastDes);
+		    $lastuserpage.fadeIn(500);
+	    };
+
+		//字嗨splash页面逻辑
 	    var showSplash = function(){
 		    $(".pagesplash").click(function(e){
 			    var tl = new TimelineMax();
@@ -179,7 +317,8 @@
 				    .fromTo($(".pagestart"),1,{alpha:0},{alpha:1,display:'block'});
 		    });
 	    };
-//	    游戏开始页面
+
+	    //游戏开始页面逻辑
 	    var startGame = function(){
 		    $(".zh-btnstart").click(function(){
 			    var $page1 = $(".page1");
@@ -191,7 +330,7 @@
 	    };
 
         //剧情页面切换动作调用
-        var jump = function(){
+        var bind_jumpAction = function(){
             $(".container").on({
                 click:function(e){
                     var t = $(this);
@@ -208,21 +347,13 @@
                         var summaryText = getSummary(totalScore);
 	                    setSummary(summaryText);
                     }
-//	                cp.hide();
 	                var tl = new TimelineMax();
 	                tl.fromTo(cp,0,{alpha:1},{alpha:0,ease:Strong.easeOut,display:'none'})
 	                    .fromTo(np,1,{alpha:0,scale:1.5},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
-//	                np.removeClass('zh-hidden');
-//	                np.show();
-//	                TweenMax.fromTo(np,1,{alpha:0,x:1000},{alpha:1,x:0,ease:Strong.easeOut});
                 }
             },".zh-sbtn");
         };
-	    var setSummary = function(s){
-		    $('.zh-totalscore').html(s.score);
-		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +':'+ s.text);
-		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
-	    };
+
         //计算总结页和展示
         var getSummary = function(score){
             var des = null;
@@ -239,6 +370,15 @@
             });
             return me;
         };
+
+	    //设定结局页面
+	    var setSummary = function(s){
+		    $('.zh-totalscore').html(s.score);
+		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +':'+ s.text);
+		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
+		    setUserDes(s.text);
+		    setUserBadge("./src/img/badge/"+s.img);
+	    };
 
 	    //显示跳转按钮
 	    var binding_showAction = function(){
@@ -269,6 +409,13 @@
 		    });
 	    };
 
+	    me.goPage = function(pageIndex,animation){
+		    var $pages = $(_opt.page);
+		    var $goPage = $(_opt.page+pageIndex);
+		    $pages.hide();
+		    $goPage.show();
+	    };
+
         //重玩
         me.restart = function(){
             totalScore = 0;
@@ -283,78 +430,11 @@
         me.init = function(){
 	        startGame();
 	        showSplash();
-            jump();
+	        bind_jumpAction();
 	        binding_getUserName();
 	        binding_showAction();
         };
         return me;
-    }());
-
-    //加载剧情
-    var zhLoadStory = (function(){
-        var me = {};
-        var storyObject = {};
-        var tpl = $('#pageTpl').html();
-
-        function loadStory(tpl){
-            var storyTpl = {},
-                summaryTpl = {};
-            $.get(tpl,function(data){
-                if(!data){
-                    return false
-                }
-                var t = $(data);
-                storyTpl = t.filter("#stories").find("section");
-                summaryTpl = t.filter("#summary");
-                templateToJson(storyTpl);
-            });
-        }
-
-        var templateToJson = function(storiesBlock){
-            //template to object
-            $.each(storiesBlock,function(i,v){
-                var st = {};
-                var act = [];//actions
-                var d = $(v);
-                st.id = d.attr("id");
-                st.img = d.find("img")? d.find("img").attr("data-img"): null;
-                var _textLines = d.find('[data-txt=story]').find("p");
-                st.txt = {};
-                $.each(_textLines,function(i,v){
-                    var a = $(v).text();
-                    st.txt[i] = $.trim(a);
-                });
-                if (d.find("button")){
-                    $.each(d.find("button"),function(i,v){
-                        var btn = {};
-                        var adom = $(v); //action dom
-                        btn.from = st.id;
-                        btn.to = adom.attr("data-to");
-                        btn.score = adom.attr("data-score");
-                        btn.txt = adom.text();
-                        act.push(btn);
-                    })
-                }
-                st.actions = act;
-                storyObject[i] = st;
-            });
-
-            //模板装载页面
-            var html = '';
-            $.each(storyObject,function(i,v){
-                html += randerPage(v);
-            });
-            $(".pagestart").after(html);
-        };
-
-        var randerPage = function(data){
-            return juicer(tpl,data);
-        };
-
-        me.init = function(tpl) {
-            loadStory(tpl);
-        };
-        return me
     }());
 
     $(document).ready(function(){
@@ -399,8 +479,9 @@
 			    },
 			    trigger:function(){
 				    this.title = zhGameLogic.userName();
-				    this.desc = zhGameLogic.userName();
-				    alert(zhGameLogic.userName());
+				    this.imgUrl = zhGameLogic.userBadge();
+				    this.desc = zhGameLogic.userDes();
+				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
@@ -411,7 +492,8 @@
 			    imgUrl: shareImg,
 			    trigger:function(res){
 				    this.title = zhGameLogic.userName();
-				    this.link = shareLink+'?name='+zhGameLogic.userName();
+				    this.imgUrl = zhGameLogic.userBadge();
+				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
@@ -434,8 +516,12 @@
     });
 
 	window.onload = function(){
-		zhLoadStory.init(zhConfig.storyTpl);
-		zhGameLogic.init();
+		zhLoadStory.setLogicModal(zhGameLogic);
+		zhLoadStory.setTemplate(zhConfig.storyTpl);
+		zhLoadStory.init();
+		console.log(lastDes);
+		console.log(lastUser);
+		zhGameLogic.showLastUserResult(lastUser,lastDes);
 		$(".zh-restartbtn").click(function(e){
 			zhGameLogic.restart();
 		});
