@@ -420,8 +420,9 @@
         me.restart = function(){
             totalScore = 0;
 	        setUserScore(-1000);
-            $(".page").fadeOut(500);
-            $(".pagestart").fadeIn(500);
+            $(".page").hide();
+//            $(".pagestart").fadeIn(500);
+	        $(".pagesplash").fadeIn(500);
 	        $(".zh-showoptbtn").show();
 	        $(".zh-btnblock").hide();
         };
