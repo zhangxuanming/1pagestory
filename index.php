@@ -377,7 +377,7 @@
 		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +':'+ s.text);
 		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
 		    setUserDes(s.text);
-		    setUserBadge("./src/img/badge/"+s.img);
+		    setUserBadge(s.img);
 	    };
 
 	    //显示跳转按钮
