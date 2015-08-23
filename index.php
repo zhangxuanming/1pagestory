@@ -489,7 +489,7 @@
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
 				    alert(zhGameLogic.userName());
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
+				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'$img='+zhGameLogic.userBadge();
 			    }
 		    });
 
@@ -502,7 +502,7 @@
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    alert(zhGameLogic.userName());
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
+				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'$img='+zhGameLogic.userBadge();
 			    }
 		    });
 
