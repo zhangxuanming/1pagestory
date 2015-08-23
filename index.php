@@ -320,7 +320,7 @@
 	    var showSplash = function(){
 		    $(".pagesplash").click(function(e){
 			    var tl = new TimelineMax();
-			    tl.fromTo($(this),0.5,{alpha:1},{alpha:0,display:'none'})
+			    tl.fromTo($(this),0.5,{},{display:'none'})
 				    .fromTo($(".pagestart"),1,{alpha:0},{alpha:1,display:'block'});
 		    });
 	    };
