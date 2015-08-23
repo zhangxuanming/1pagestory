@@ -306,10 +306,14 @@
 		    lastUser=decodeURIComponent(lastUser);
 		    lastDes=decodeURIComponent(lastDes);
 		    lastImg=_opt.badgeUrl + decodeURIComponent(lastImg);
-		    $("#lastuserbadge").attr('src',lastImg);
+		    var $stamp = $("#lastuserbadge");
+		    TweenMax.set($stamp,{alpha:0});
+		    $stamp.attr('src',lastImg);
 		    $("#lastusername").html(lastUser);
 		    $("#lastuserdes").html("获得: "+lastDes);
-		    $lastuserpage.fadeIn(500);
+		    $lastuserpage.fadeIn(500,function(){
+			    TweenMax.fromTo($stamp,2,{alpha:1,scale:3,rotationY:360},{alpha:1,scale:1,rotationY:0,ease:Elastic.easeOut});
+		    });
 	    };
 
 		//字嗨splash页面逻辑
