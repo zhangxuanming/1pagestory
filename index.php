@@ -460,6 +460,7 @@
 		    var shareTitle = "拐卖小朋友";
 		    var shareDesc = '你要逃离深山，看你啦';
 		    var shareLink = 'http://wxdev.wordhi.com';
+		    var shareImgUrl ='http://wxdev.wordhi.com/src/img/badge/';
 		    var shareImg = 'http://wxdev.wordhi.com/src/img/badge/stamp_3.png';
             wx.checkJsApi({
                 jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
@@ -480,7 +481,7 @@
 			    },
 			    trigger:function(){
 				    this.title = zhGameLogic.userName();
-				    this.imgUrl = zhGameLogic.userBadge();
+				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
 				    alert(zhGameLogic.userName());
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
@@ -495,7 +496,7 @@
 			    imgUrl: shareImg,
 			    trigger:function(res){
 				    this.title = zhGameLogic.userName();
-				    this.imgUrl = zhGameLogic.userBadge();
+				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    alert(zhGameLogic.userName());
 //				    this.link = shareLink+'?name='+zhGameLogic.userName();
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
