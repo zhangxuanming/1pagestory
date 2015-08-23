@@ -528,6 +528,7 @@
 		zhLoadStory.setLogicModal(zhGameLogic);
 		zhLoadStory.setTemplate(zhConfig.storyTpl);
 		zhLoadStory.init();
+		alert(lastImg);
 		zhGameLogic.showLastUserResult(lastUser,lastDes,lastImg);
 		$(".zh-restartbtn").click(function(e){
 			zhGameLogic.restart();
