@@ -59,21 +59,18 @@
 <body class="zh-black" ontouchstart="">
 <div class="container">
 <!--	上个用户页面-->
-	<div class="row page pagelastuser full zh-hidden">
-		<div class="col-xs-12" style="margin-top: 2em">
-			<img class="himg" src="src/img/bg1.png" />
-		</div>
+	<div class="row page pagelastuser full zh-hidden zh-yellow">
+		<br>
 		<div class="col-xs-12">
 			<div class="row">
-				<div class="col-xs-3">
-					<img src="./src/img/badge/kirakiraeyes.png" class="img-responsive img-circle" style="border:2px solid #ffff00;align:middle;" />
-				</div>
-			</div>
-			<div class="row">
+				<!--徽章-->
 				<div class="col-xs-12">
-					<h4 id="lastusername"></h4>
+					<img id="lastuserbadge" class="zh-stamp center-block img-thumbnail img-circle" style="margin-top: -3px" src="./src/img/badge/stamp_3.png" />
+				</div>
+				<div class="col-xs-12">
+					<h4 id="lastusername" style="font-weight: bold"></h4>
 					<h4>在字嗨逃离深山 大冒险中</h4>
-					<h4 id="lastuserdes">在字嗨逃离深山 大冒险中</h4>
+					<h4 id="lastuserdes"></h4>
 				</div>
 			</div>
 		</div>
@@ -150,6 +147,7 @@
 <script>
 	var lastUser = null;
 	var lastDes = null;
+	var lastImg = null;
 	var cUser = null;
 	var cScore = null;
 	//配置页面在config.js
@@ -157,9 +155,11 @@
 	<?php
 		$name = isset($_GET["name"])?htmlspecialchars(trim($_GET["name"])):null;
 		$des = isset($_GET["des"])?htmlspecialchars(trim($_GET["des"])):null;
+		$img = isset($_GET["img"])?htmlspecialchars(trim($_GET["img"])):null;
 		if($name && $des){
 			echo "lastUser ='".$name."';"."\n";
 			echo "lastDes ='".$des."';"."\n";
+			echo "lastImg ='".$img."';"."\n";
 		}
 	?>
 
@@ -244,7 +244,8 @@
 	//游戏逻辑
     var zhGameLogic = (function(option){
 	    var _opt = {
-		    "page":".page"
+		    "page":".page",
+		    "badgeUrl":'./src/img/badge/'
 	    };
 	    if (option){
 		    _opt = option
@@ -295,7 +296,7 @@
 	    };
 
 	    //展示上个玩家页面
-	    me.showLastUserResult = function(lastUser,lastDes){
+	    me.showLastUserResult = function(lastUser,lastDes,lastImg){
 		    var $lastuserpage = $(".pagelastuser");
 		    var $splashpage =  $(".pagesplash");
 		    if (!lastUser || !lastDes) {
@@ -304,8 +305,10 @@
 		    }
 		    lastUser=decodeURIComponent(lastUser);
 		    lastDes=decodeURIComponent(lastDes);
+		    lastImg=_opt.badgeUrl + decodeURIComponent(lastImg);
+		    $("#lastuserbadge").attr('src',lastImg);
 		    $("#lastusername").html(lastUser);
-		    $("#lastuserdes").html(lastDes);
+		    $("#lastuserdes").html("获得: "+lastDes);
 		    $lastuserpage.fadeIn(500);
 	    };
 
@@ -421,7 +424,6 @@
             totalScore = 0;
 	        setUserScore(-1000);
             $(".page").hide();
-//            $(".pagestart").fadeIn(500);
 	        $(".pagesplash").fadeIn(500);
 	        $(".zh-showoptbtn").show();
 	        $(".zh-btnblock").hide();
@@ -477,7 +479,6 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    success:function(res){
-//				    alert(123);
 			    },
 			    trigger:function(){
 				    this.title = zhGameLogic.userName();
@@ -485,7 +486,6 @@
 				    this.desc = zhGameLogic.userDes();
 				    alert(zhGameLogic.userName());
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
-//				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
@@ -498,9 +498,7 @@
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    alert(zhGameLogic.userName());
-//				    this.link = shareLink+'?name='+zhGameLogic.userName();
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes();
-//				    this.link = shareLink+'?name='+atob(encodeURIComponent(zhGameLogic.userName()))+'&des='+atob(encodeURIComponent(zhGameLogic.userDes()));
 			    }
 		    });
 
@@ -526,9 +524,7 @@
 		zhLoadStory.setLogicModal(zhGameLogic);
 		zhLoadStory.setTemplate(zhConfig.storyTpl);
 		zhLoadStory.init();
-		console.log(lastDes);
-		console.log(lastUser);
-		zhGameLogic.showLastUserResult(lastUser,lastDes);
+		zhGameLogic.showLastUserResult(lastUser,lastDes,lastImg);
 		$(".zh-restartbtn").click(function(e){
 			zhGameLogic.restart();
 		});

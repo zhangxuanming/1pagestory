@@ -295,7 +295,7 @@ html,body {
 }
 
 .pagelastuser{
-    background-color: #333333;
+
 }
 .pagelastuser .himg{
     width: 100%;
@@ -306,7 +306,7 @@ html,body {
 }
 .pagelastuser h4{
     text-align: center;
-    color: azure;
+    color: #333333;
 }
 
 .zh-btnwant{
