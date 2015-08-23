@@ -489,7 +489,7 @@
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
 				    alert(zhGameLogic.userName());
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'$img='+zhGameLogic.userBadge();
+				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
 		    });
 
@@ -502,7 +502,7 @@
 				    this.title = zhGameLogic.userName();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    alert(zhGameLogic.userName());
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'$img='+zhGameLogic.userBadge();
+				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
 		    });
 
@@ -528,7 +528,6 @@
 		zhLoadStory.setLogicModal(zhGameLogic);
 		zhLoadStory.setTemplate(zhConfig.storyTpl);
 		zhLoadStory.init();
-		alert(lastImg);
 		zhGameLogic.showLastUserResult(lastUser,lastDes,lastImg);
 		$(".zh-restartbtn").click(function(e){
 			zhGameLogic.restart();
