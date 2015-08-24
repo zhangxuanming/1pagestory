@@ -20,7 +20,7 @@
 
     <!--模板-->
     <script id="pageTpl" type="text/template">
-        <div class="row page page${id} full zh-hidden zh-black">
+        <div class="row page page${id} full zh-hidden zh-read-yellow">
             <div class="col-md-12 full" style="position: relative;">
                 <br>
                 <div class="row">
@@ -319,9 +319,11 @@
 		//字嗨splash页面逻辑
 	    var showSplash = function(){
 		    $(".pagesplash").click(function(e){
+			    var $startPage = $(".pagestart");
 			    var tl = new TimelineMax();
 			    tl.fromTo($(this),0.5,{},{display:'none'})
-				    .fromTo($(".pagestart"),1,{alpha:0},{alpha:1,display:'block'});
+				    .fromTo($startPage,1,{alpha:0},{alpha:1,display:'block'});
+//				    .to($startPage,0,{className:"+=grayscale"});
 		    });
 	    };
 

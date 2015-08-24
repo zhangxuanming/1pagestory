@@ -55,6 +55,17 @@ html,body {
 .zh-t-black{
     color: #333333;
 }
+.zh-read-yellow{
+    background-color: #ffefaf;
+    color: #333333;
+}
+.zh-read-yellow p{
+    color: #333333;
+}
+.zh-read-yellow .zh-showoptbtn{
+    /*background-color: #ffe680;*/
+    background-color: #ffefaf;
+}
 
 /*选项按钮*/
 .zh-btn{
@@ -108,6 +119,8 @@ html,body {
     -webkit-animation: sb 1.5s infinite linear;
     -moz-animation: sb 1.5s infinite linear;
     padding: 10px;
+    box-shadow: 0 0 1px 1px #999;
+    -webkit-box-shadow: 0 0 1px 1px #999;
 }
 @keyframes sb {
     0%{border-width:10px;border-color: transparent}
@@ -211,6 +224,9 @@ html,body {
     outline: none;
     color: azure;
 }
+.zh-name-wrap{
+    margin-bottom: 30px;
+}
 .zh-name-wrap::before{
     content: "";
     color: #FFCC00;
@@ -293,6 +309,12 @@ html,body {
     background:url(../src/img/startbg.png);
     background-size: cover;
     background-repeat: no-repeat;
+}
+.grayscale{
+    filter: sepia(1);
+    -webkit-filter:sepia(1);
+    transition:  all 2s ease;
+    -webkit-transition: all 2s ease;
 }
 .zh-story-title *{
     color:#fff;
