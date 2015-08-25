@@ -72,9 +72,19 @@ html,body {
     border-radius: 0;
     color: #FFCC00;
 }
-.zh-btn:active:hover:focus{
+/*.zh-btn:active:hover:focus{*/
+    /*outline: none !important;*/
+    /*background-color: rgba(253,234,147,0.8) !important;*/
+/*}*/
+.zh-btn:active,.zh-btn:focus{
     outline: none !important;
-    background-color: rgba(253,234,147,0.8) !important;
+    background-color: rgba(253,234,147,1) !important;
+    border-color: #FFCC00 !important;
+}
+.zh-btn:hover{
+    outline: none !important;
+    background-color: rgba(253,234,147,1);
+    border-color: #FFCC00 !important;
 }
 .zh-btn-yellow{
     background-color: rgba(0,0,0,0.5);
@@ -87,11 +97,6 @@ html,body {
     color: #ffcc00;
     border: 2px solid #FFCC00;
     font-size: 1.4em;
-}
-.zh-btn:active,.zh-btn:hover,.zh-btn:focus{
-    outline: none !important;
-    background-color: rgba(253,234,147,1) !important;
-    border-color: #FFCC00 !important;
 }
 .zh-btnstart{
     background-color: rgba(0,0,0,0.7);
@@ -132,7 +137,7 @@ html,body {
 }
 @-webkit-keyframes sb {
     0%{border-width:10px;border-color: transparent}
-    100%{border-width:0;border-color: azure}
+    100%{border-width:0;border-color: azure;}
 }
 
 .storytext{
