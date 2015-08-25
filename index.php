@@ -22,11 +22,10 @@
     <script id="pageTpl" type="text/template">
         <div class="row page page${id} full zh-hidden zh-read-yellow">
             <div class="col-md-12 full" style="position: relative;">
-                <br>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 zh-img-block">
 	                    {@if img}
-	                        <img src="src/img/${img}" class="story-img img-responsive center-block zh-blur" alt="Responsive image" >
+	                        <img src="src/img/${img}" class="zh-img-story img-responsive center-block" alt="Responsive image" >
 	                    {@/if}
                     </div>
                 </div>
@@ -91,7 +90,7 @@
 	</div>
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">
-	    <button class="btn btn-xs zh-btn zh-img-switch zh-btn-yellow" style="position: absolute;width:50px;height:50px;z-index:100;border-radius: 50%;text-align: center;color:red">藏图</button>
+	    <button class="btn btn-xs zh-btn zh-img-switch zh-btn-yellow" style="position: absolute;width:50px;height:50px;z-index:100;border-radius: 50%;text-align: center;color:#FFCC00">藏图</button>
         <div class="col-xs-12 v-center zh-story-title" style="top: 20%">
 	        <h3 class="center-block text-center zh-t-white">嗨！冒险 之</h3>
             <h1 class="center-block text-center zh-t-white">逃离深山</h1>
@@ -541,15 +540,16 @@
 			zhGameLogic.restart();
 		});
 		$(".zh-img-switch").click(function(e){
+			var $img = $('.zh-img-block');
 			if (typeof($(this).data("flag")) == "undefined") {
 				$(this).data("flag",true);
 			}
 			if ($(this).data("flag")){
-				$(".story-img").hide();
+				$img.hide();
 				$(this).data("flag",false);
 				$(this).html("显图");
 			}else{
-				$(".story-img").show();
+				$img.show();
 				$(this).data("flag",true);
 				$(this).html("藏图");
 			}
