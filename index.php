@@ -449,7 +449,7 @@
     }());
 
     $(document).ready(function(){
-	    var sig = "http://wx.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
 	    $.getJSON(sig,function(data){
 		    wx.config({
 			    debug: true,
