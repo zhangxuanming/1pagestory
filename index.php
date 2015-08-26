@@ -47,7 +47,7 @@
                     <div class="col-sm-12 zh-btnblock">
                         <br>
                         {@each actions as item,index}
-                            <button data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-default btn-block zh-btn zh-sbtn">${item.txt}</button>
+                            <button data-from="${item.from}" data-to="${item.to}" data-score="${item.score}" class="btn btn-block zh-btn zh-sbtn">${item.txt}</button>
                         {@/each}
                         <br>
                     </div>
@@ -77,7 +77,7 @@
 		</div>
 		<div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
 			<div class="row">
-				<button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-default btn-lg zh-btn zh-btn-yellow zh-btnwant"
+				<button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btnwant"
 				        style="font-weight: bold;">我也要玩</button>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 			    <input id="zh-name" class="" style="margin-bottom: 20px" type="text" maxlength="8" value="你叫啥？" placeholder="你叫啥？">
 		    </div>
 		    <div class="row">
-			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-default btn-lg zh-btn zh-btn-yellow zh-btnstart"
+			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btn zh-btn-yellow zh-btnstart"
 			            style="font-weight: bold;">开始嗨</button>
 		    </div>
 	    </div>
