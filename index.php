@@ -90,18 +90,25 @@
 	</div>
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">
-	    <button class="btn btn-xs zh-btn zh-img-switch zh-btn-yellow" style="position: absolute;width:50px;height:50px;z-index:100;border-radius: 50%;text-align: center;color:#FFCC00">藏图</button>
-        <div class="col-xs-12 v-center zh-story-title" style="top: 20%">
-	        <h3 class="center-block text-center zh-t-white">嗨！冒险 之</h3>
-            <h1 class="center-block text-center zh-t-white">逃离深山</h1>
-        </div>
+<!--	    <button class="btn btn-xs zh-btn zh-img-switch zh-btn-yellow" style="position: absolute;width:50px;height:50px;z-index:100;border-radius: 50%;text-align: center;color:#FFCC00">藏图</button>-->
+	    <div class="col-xs-12 v-center zh-story-title" style="top: 20%">
+
+	    </div>
 	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
+		    <h3 class="center-block text-center zh-t-white"style="    float: left;
+    margin-left: 5%;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.78);">嗨！冒险 之</h3>
+		    <h1 class="center-block text-center zh-t-white" style="float: left;
+    margin-left: 5%;
+    clear: both;margin-top: 5px;">逃离深山</h1>
+		    <h3 class="center-block zh-t-white"style="float: left;
+    margin:5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);line-height: 1.5em;">你从酒吧出来已是午夜，夜灯下无人的马路自有其浪漫风味。忽然你觉得脑后一疼……</h3>
 		    <div class="row zh-name-wrap">
-			    <input id="zh-name" class="" style="margin-bottom: 20px" type="text" maxlength="8" value="你叫啥？" placeholder="你叫啥？">
+			    <input id="zh-name" class="" style="margin-left: 15px" type="text" maxlength="8" value="你叫啥？" placeholder="起个名字呗">
 		    </div>
 		    <div class="row">
-			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btn zh-btn-yellow zh-btnstart"
-			            style="font-weight: bold;">开始嗨</button>
+			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btn zh-btn-yellow zh-btnstart"style="font-weight: bold;">开始嗨</button>
 		    </div>
 	    </div>
     </div>
@@ -111,27 +118,33 @@
     <!--结局页-->
     <div class="row page pageend full zh-hidden zh-yellow">
         <br>
-        <div class="col-xs-12">
-            <div class="row">
-                <!--徽章-->
-                <div class="col-xs-12">
-                    <img class="zh-stamp center-block img-thumbnail img-circle" style="margin-top: -3px" src="./src/img/badge/stamp_3.png" />
-                </div>
-                <div class="col-xs-12">
-                    <br>
-                    <!--分值-->
-                    <p class="text-center">根据您的战斗表现，我们觉得您的战斗力为 :
-                        <span class="zh-totalscore text-center" style="font-size: 14pt"></span>
-                    </p>
-                    <!--结语-->
-                    <h4 class="zh-summarytext text-center"></h4>
-                </div>
-            </div>
-        </div>
-        <div class="row">
+	    <div class="col-xs-12" style="margin-top: -6%;">
+		    <div class="row">
+			    <!--徽章-->
+			    <div class="col-xs-12" style="background:#fff;">
+				    <!--分值-->
+				    <p id="zh-summaryPage-title" class="text-center" style="padding-top: 10%;color: #777;">根据您的战斗表现，我们觉得您的战斗力为 :</p>
+				    <p class="text-center">
+					    <span class="zh-totalscore text-center" style="font-size:60pt;color:#FFF054;"></span>
+				    </p>
+				    <p class="text-center zh-t-yellow1">战斗力</p>
+				    <!--结语-->
+				    <img class="zh-stamp center-block" style="margin-top: -3px;margin-bottom: 4%;" src="./src/img/badge/stamp_3.png" />
+			    </div>
+			    <div class="col-xs-12" style="margin-top: 2%;">
+				    <br>
+
+				    <h4 class="zh-summarytext text-center" style="    font-size: 24px;
+    margin-top: 5%;
+    color: #8A6E00;"></h4>
+			    </div>
+		    </div>
+	    </div>
+
+	    <div class="row">
             <br>
             <div class="col-xs-6 col-xs-offset-3">
-                <button class="btn btn-block btn-default btn-lg zh-btn zh-restartbtn">重玩一次</button>
+                <button class="btn btn-block btn-lg zh-btn zh-restartbtn">重玩一次</button>
             </div>
         </div>
     </div>
@@ -384,9 +397,10 @@
 
 	    //设定结局页面
 	    var setSummary = function(s){
-		    $('.zh-totalscore').html(s.score);
-		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +':'+ s.text);
+		    $('#zh-summaryPage-title').html("本轮逃离深山故事，对你侧脸结果为：");
 		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
+		    $('.zh-totalscore').html(s.score);
+		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +': '+ s.text);
 		    setUserDes(s.text);
 		    setUserBadge(s.img);
 	    };
