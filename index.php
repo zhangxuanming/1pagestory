@@ -12,8 +12,8 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
+        <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
     <![endif]-->
     <script src="js/juicer-min.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -66,12 +66,14 @@
 			<div class="row">
 				<!--徽章-->
 				<div class="col-xs-12">
-					<img id="lastuserbadge" class="zh-stamp center-block img-thumbnail img-circle" style="margin-top: -3px" src="./src/img/badge/stamp_3.png" />
+					<div id="lastuserbadge" class="zh-stamp center-block img-thumbnail"
+					     style="background-image: url(./src/img/badge/angry.png);"></div>
 				</div>
 				<div class="col-xs-12">
-					<h4 id="lastusername" style="font-weight: bold"></h4>
+					<h2 id="lastusername" style="font-weight: bold"></h2>
 					<h4>在字嗨逃离深山 大冒险中</h4>
-					<h4 id="lastuserdes"></h4>
+					<h4>获得称号</h4>
+					<h3 id="lastuserdes"></h3>
 				</div>
 			</div>
 		</div>
@@ -96,9 +98,7 @@
 	    </div>
 	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
 		    <h3 class="center-block text-center zh-t-white"style="    float: left;
-    margin-left: 5%;
-    font-size: 1.2em;
-    color: rgba(255, 255, 255, 0.78);">嗨！冒险 之</h3>
+    margin-left: 5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);">嗨！冒险 之</h3>
 		    <h1 class="center-block text-center zh-t-white" style="float: left;
     margin-left: 5%;
     clear: both;margin-top: 5px;">逃离深山</h1>
@@ -317,9 +317,10 @@
 		    lastImg=_opt.badgeUrl + decodeURIComponent(lastImg);
 		    var $stamp = $("#lastuserbadge");
 		    TweenMax.set($stamp,{alpha:0});
-		    $stamp.attr('src',lastImg);
+//		    $stamp.attr('src',lastImg);
+		    $stamp.css('background-image','url('+lastImg+')');
 		    $("#lastusername").html(lastUser);
-		    $("#lastuserdes").html("获得: "+lastDes);
+		    $("#lastuserdes").html(lastDes);
 		    $lastuserpage.fadeIn(500,function(){
 			    TweenMax.fromTo($stamp,2,{alpha:1,scale:3,rotationY:360},{alpha:1,scale:1,rotationY:0,ease:Elastic.easeOut});
 		    });
@@ -332,7 +333,6 @@
 			    var tl = new TimelineMax();
 			    tl.fromTo($(this),0.5,{},{display:'none'})
 				    .fromTo($startPage,1,{alpha:0},{alpha:1,display:'block'});
-//				    .to($startPage,0,{className:"+=grayscale"});
 		    });
 	    };
 
