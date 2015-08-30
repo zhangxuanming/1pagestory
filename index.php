@@ -122,7 +122,7 @@
 			    <div class="col-xs-12" style="background:#fff;"><!--分值-->
 				    <p id="zh-summaryPage-title" class="text-center" style="padding-top: 10%;color: #777;">根据您的战斗表现，我们觉得您的战斗力为 :</p>
 				    <p class="text-center">
-					    <span class="zh-totalscore text-center" style="font-size:60pt;color:#FFF054;"></span>
+					    <span class="zh-totalscore text-center" style="font-size:60pt;color:#FFF054;line-height: 1"></span>
 				    </p>
 				    <p class="text-center zh-t-yellow1">战斗力</p>
 				    <!--结语-->
