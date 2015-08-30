@@ -128,14 +128,14 @@
 				    <!--结语-->
 				    <img class="zh-stamp center-block" style="margin-top: -3px;margin-bottom: 4%;" src="./src/img/badge/stamp_3.png" />
 			    </div>
-			    <div class="col-xs-12" style="margin-top: 2%;">
-				    <br>
-				    <h4 class="zh-summarytext text-center" style="    font-size: 24px;margin-top: 5%;color: #8A6E00;"></h4>
-			    </div>
 		    </div>
 	    </div>
 	    <div class="col-xs-12 v-bottom">
 		    <div class="row">
+			    <div class="col-xs-12" style="margin-top: 2%;">
+				    <br>
+				    <h4 class="zh-summarytext text-center" style="    font-size: 24px;margin-top: 5%;color: #8A6E00;"></h4>
+			    </div>
 			    <div class="col-xs-6 col-xs-offset-3">
 				    <button class="btn btn-block btn-lg zh-btn zh-restartbtn">重玩一次</button>
 			    </div>
