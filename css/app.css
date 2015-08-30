@@ -21,6 +21,10 @@ html,body {
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
 }
+.v-bottom {
+    position: absolute;
+    bottom: 15px;
+}
 .full{
     position:relative;
     min-height: 100%;
@@ -385,6 +389,11 @@ html,body {
     border: 3px solid #fff;
     color: #ffffff;
 }
+.zh-btnwant:hover:active{
+    background-color: #333;
+    border: 3px solid #fff;
+    color: #ffffff;
+}
 .zh-img-story{
     position: absolute;
     bottom: 0;
@@ -415,6 +424,9 @@ html,body {
 }
 @media (max-height: 480px) {
     .zh-sbtn{
+        font-size: 1.1em;
+    }
+    .zh-txt p{
         font-size: 1.1em;
     }
 }

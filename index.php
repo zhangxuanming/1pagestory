@@ -117,12 +117,9 @@
 
     <!--结局页-->
     <div class="row page pageend full zh-hidden zh-yellow">
-        <br>
 	    <div class="col-xs-12" style="margin-top: -6%;">
-		    <div class="row">
-			    <!--徽章-->
-			    <div class="col-xs-12" style="background:#fff;">
-				    <!--分值-->
+		    <div class="row"><!--徽章-->
+			    <div class="col-xs-12" style="background:#fff;"><!--分值-->
 				    <p id="zh-summaryPage-title" class="text-center" style="padding-top: 10%;color: #777;">根据您的战斗表现，我们觉得您的战斗力为 :</p>
 				    <p class="text-center">
 					    <span class="zh-totalscore text-center" style="font-size:60pt;color:#FFF054;"></span>
@@ -133,20 +130,17 @@
 			    </div>
 			    <div class="col-xs-12" style="margin-top: 2%;">
 				    <br>
-
-				    <h4 class="zh-summarytext text-center" style="    font-size: 24px;
-    margin-top: 5%;
-    color: #8A6E00;"></h4>
+				    <h4 class="zh-summarytext text-center" style="    font-size: 24px;margin-top: 5%;color: #8A6E00;"></h4>
 			    </div>
 		    </div>
 	    </div>
-
-	    <div class="row">
-            <br>
-            <div class="col-xs-6 col-xs-offset-3">
-                <button class="btn btn-block btn-lg zh-btn zh-restartbtn">重玩一次</button>
-            </div>
-        </div>
+	    <div class="col-xs-12 v-bottom">
+		    <div class="row">
+			    <div class="col-xs-6 col-xs-offset-3">
+				    <button class="btn btn-block btn-lg zh-btn zh-restartbtn">重玩一次</button>
+			    </div>
+		    </div>
+	    </div>
     </div>
 
 </div>
@@ -397,7 +391,7 @@
 
 	    //设定结局页面
 	    var setSummary = function(s){
-		    $('#zh-summaryPage-title').html("本轮逃离深山故事，对你侧脸结果为：");
+		    $('#zh-summaryPage-title').html("本轮逃离深山故事，对你测脸结果为：");
 		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
 		    $('.zh-totalscore').html(s.score);
 		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +': '+ s.text);
