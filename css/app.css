@@ -184,7 +184,38 @@ html,body {
     overflow-y: hidden;
     padding: 0;
 }
-@media(max-height:480px ) {
+@media
+(min-device-width: 414px)
+and (max-device-width: 736px)
+{
+    .zh-stamp{
+        min-height: 300px;
+        min-width: 300px;
+        width: 300px;
+        height: 300px;
+        transition: none;
+        -webkit-transition: none;
+        -moz-transition: none;
+    }
+}
+@media
+(min-device-width: 320px)
+and (max-device-width: 568px)
+{
+    .zh-stamp{
+        min-height: 200px;
+        min-width: 200px;
+        width: 250px;
+        height: 250px;
+        transition: none;
+        -webkit-transition: none;
+        -moz-transition: none;
+    }
+    /*.zh-img-block{*/
+        /*height: 300px;*/
+    /*}*/
+}
+@media (min-device-width: 320px) and (max-device-height:480px ) {
     .zh-stamp{
         min-height: 150px;
         min-width: 150px;
@@ -193,9 +224,6 @@ html,body {
         transition: none;
         -webkit-transition: none;
         -moz-transition: none;
-    }
-    .zh-img-block{
-        height: 150px;
     }
 }
 .sprite {

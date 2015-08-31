@@ -116,7 +116,7 @@
     <!--剧情会被插入这里-->
 
     <!--结局页-->
-    <div class="row page pageend full zh-hidden zh-yellow">
+    <div class="row page pageend full zh-hidden zh-yellow" style="background-color: #ffe681">
 	    <div class="col-xs-12" style="margin-top: -6%;">
 		    <div class="row"><!--徽章-->
 			    <div class="col-xs-12" style="background:#fff;"><!--分值-->
@@ -130,7 +130,7 @@
 			    </div>
 		    </div>
 	    </div>
-	    <div class="col-xs-12 v-bottom">
+	    <div class="col-xs-12 v-bottom" style="background-color: #ffe681">
 		    <div class="row">
 			    <div class="col-xs-12" style="margin-top: 2%;">
 				    <br>
