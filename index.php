@@ -510,9 +510,8 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    trigger:function(res){
-				    this.title = '冒险者: '+zhGameLogic.userName();
+				    this.title = zhGameLogic.userName()+'在逃离深山冒险获得\n'+zhGameLogic.userDes();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
-				    this.desc = zhGameLogic.userDes();
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
 		    });
