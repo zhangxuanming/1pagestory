@@ -93,20 +93,28 @@ html,body {
 /*background-color: rgba(253,234,147,1);*/
 /*border-color: #FFCC00 !important;*/
 /*}*/
-.zh-btn:hover::focus{
+.zh-btn:hover:focus{
     outline: none !important;
     background-color: rgba(253,234,147,1);
     border-color: #FFCC00 !important;
 }
 .zh-btn-yellow{
     background-color: rgba(0,0,0,0.5);
-    color: #ffcc00;
+    color: #ffcc00 !important;
     border: 1px solid #FFCC00;
     font-size: 1.4em;
 }
-.zh-sbtn{
+.zh-btn-yellow:hover:focus{
     background-color: rgba(0,0,0,0.5);
     color: #ffcc00;
+}
+.zh-btn-yellow:hover:active{
+    background-color: rgba(0,0,0,0.5) ;
+    color: #ffcc00;
+}
+.zh-sbtn{
+    background-color: rgba(0,0,0,0.5);
+    color: #ffcc00 !important;
     border: 1px solid #FFCC00;
     font-size: 1.4em;
 }
