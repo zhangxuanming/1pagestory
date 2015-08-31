@@ -510,7 +510,7 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    trigger:function(res){
-				    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“<b>'+zhGameLogic.userDes()+'</b>” 称号';
+				    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“'+zhGameLogic.userDes()+'”称号';
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
