@@ -490,17 +490,16 @@
 
 		    // 分享给朋友事件绑定
 		    wx.onMenuShareAppMessage({
-			    title: zhGameLogic.userName(),
-			    desc: zhGameLogic.userName(),
+			    title: shareTitle,
+			    desc: shareLink,
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    success:function(res){
 			    },
 			    trigger:function(){
-				    this.title = zhGameLogic.userName();
+				    this.title = '冒险者: '+zhGameLogic.userName();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 				    this.desc = zhGameLogic.userDes();
-				    alert(zhGameLogic.userName());
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
 		    });
@@ -511,9 +510,9 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    trigger:function(res){
-				    this.title = zhGameLogic.userName();
+				    this.title = '冒险者: '+zhGameLogic.userName();
 				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
-				    alert(zhGameLogic.userName());
+				    this.desc = zhGameLogic.userDes();
 				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 			    }
 		    });
