@@ -62,7 +62,7 @@
 <!--	上个用户页面-->
 	<div class="row page pagelastuser full zh-hidden zh-yellow">
 		<br>
-		<div class="col-xs-12">
+		<div class="col-md-12 full">
 			<div class="row">
 				<!--徽章-->
 				<div class="col-xs-12">
@@ -76,11 +76,12 @@
 					<h3 id="lastuserdes"></h3>
 				</div>
 			</div>
-		</div>
-		<div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
-			<div class="row">
-				<button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btnwant"
-				        style="font-weight: bold;">我也要玩</button>
+			<div class="row" style="position: absolute">
+				<div class="col-xs-12 ps-block">
+					<button data-from="0" data-to="1"
+					        class="btn btn-block zh-btnwant"
+					        style="font-weight: bold;">我也要玩</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -102,7 +103,7 @@
 		    <h1 class="center-block text-center zh-t-white" style="float: left;
     margin-left: 5%;
     clear: both;margin-top: 5px;">逃离深山</h1>
-		    <h3 class="center-block zh-t-white"style="float: left;
+		    <h3 class="center-block zh-t-white"style="float: left;text-align: left;
     margin:5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);line-height: 1.5em;">你从酒吧出来已是午夜，夜灯下无人的马路自有其浪漫风味。忽然你觉得脑后一疼……</h3>
 		    <div class="row zh-name-wrap">
 			    <input id="zh-name" class="" style="margin-left: 15px" type="text" maxlength="8" value="你叫啥？" placeholder="起个名字呗">
@@ -343,10 +344,22 @@
 			    var $pageStart = $(".pagestart");
 			    var tl = new TimelineMax();
 			    tl.fromTo($pageStart,0,{},{display:'none'})
-			        .fromTo($page1,1,{alpha:0,scale:2},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
+			        .fromTo($page1,1,{alpha:0,scale:1.3},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
 		    });
 	    };
 
+	    var animationEffect = function(){
+			var e = {};
+		    var seffect = [
+			    {alpha:0,x:-1000,y:0},
+			    {alpha:0,x:1000,y:0},
+			    {alpha:0,scale:1.3},
+			    {alpha:0,rotationX:180},
+			    {alpha:0},
+			    {alpha:0,rotationY:180}
+		    ];
+		    return seffect[Math.floor(Math.random()*seffect.length)];
+	    };
         //剧情页面切换动作调用
         var bind_jumpAction = function(){
             $(".container").on({
@@ -367,7 +380,8 @@
                     }
 	                var tl = new TimelineMax();
 	                tl.fromTo(cp,0,{alpha:1},{alpha:0,ease:Strong.easeOut,display:'none'})
-	                    .fromTo(np,1,{alpha:0,scale:1.5},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
+		                .fromTo(np,1,animationEffect(),{alpha:1,scale:1,x:0,y:0,rotationX:0,rotationY:0,ease:Strong.easeOut,display:'block'});
+//	                    .fromTo(np,1,{alpha:0,scale:1.3},{alpha:1,scale:1,ease:Strong.easeOut,display:'block'});
                 }
             },".zh-sbtn");
         };
@@ -459,6 +473,7 @@
     $(document).ready(function(){
 	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
 	    $.getJSON(sig,function(data){
+		    console.log(data);
 		    wx.config({
 			    debug: true,
 			    appId: data.appID,

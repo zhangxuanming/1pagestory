@@ -470,3 +470,7 @@ and (max-device-width: 568px)
         font-size: 1.1em;
     }
 }
+.ps-block{
+    position: fixed;
+    bottom: 0;
+}
