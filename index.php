@@ -473,7 +473,7 @@
     $(document).ready(function(){
 	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
 	    $.getJSON(sig,function(data){
-		    console.log(data);
+		    alert(data);
 		    wx.config({
 			    debug: true,
 			    appId: data.appID,
