@@ -471,7 +471,8 @@
     }());
 
     $(document).ready(function(){
-	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+//	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+	    var sig = "http://dwx.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
 	    $.getJSON(sig,function(data){
 		    alert(data.signature);
 		    wx.config({
