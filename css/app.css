@@ -176,7 +176,7 @@ html,body {
 .zh-stamp{
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -474,4 +474,7 @@ and (max-device-width: 568px)
     position: absolute;
     bottom: 0;
     left: 0;
+}
+#lastusersummary *{
+    color: #8A6E00;
 }

@@ -61,15 +61,14 @@
 <div class="container">
 <!--	上个用户页面-->
 	<div class="row page pagelastuser full zh-hidden zh-yellow">
-		<br>
 		<div class="col-md-12 full">
 			<div class="row">
 				<!--徽章-->
-				<div class="col-xs-12">
-					<div id="lastuserbadge" class="zh-stamp center-block img-thumbnail"
+				<div class="col-xs-12" style="background-color: #ffffff">
+					<div id="lastuserbadge" class="zh-stamp center-block"
 					     style="background-image: url(./src/img/badge/angry.png);"></div>
 				</div>
-				<div class="col-xs-12">
+				<div id="lastusersummary" class="col-xs-12">
 					<h2 id="lastusername" style="font-weight: bold"></h2>
 					<h4>在字嗨逃离深山 大冒险中</h4>
 					<h4>获得称号</h4>
@@ -107,7 +106,7 @@
 		    <h3 class="center-block zh-t-white"style="float: left;text-align: left;
     margin:5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);line-height: 1.5em;">你从酒吧出来已是午夜，夜灯下无人的马路自有其浪漫风味。忽然你觉得脑后一疼……</h3>
 		    <div class="row zh-name-wrap">
-			    <input id="zh-name" class="" style="margin-left: 15px" type="text" maxlength="8" value="你叫啥？" placeholder="起个名字呗">
+			    <input id="zh-name" class="" style="margin-left: 15px" type="text" maxlength="8" value="你的名字?" placeholder="默认嗨客">
 		    </div>
 		    <div class="row">
 			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btn zh-btn-yellow zh-btnstart"style="font-weight: bold;">开始嗨</button>
@@ -409,7 +408,7 @@
 		    $('#zh-summaryPage-title').html("本轮逃离深山故事，对你测脸结果为：");
 		    $('.zh-stamp').attr("src","./src/img/badge/"+s.img);
 		    $('.zh-totalscore').html(s.score);
-		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +': '+ s.text);
+		    $('.zh-summarytext').html('<span style="font-weight: bolder" ">'+s.name+'</span>' +', '+ s.text);
 		    setUserDes(s.text);
 		    setUserBadge(s.img);
 	    };
