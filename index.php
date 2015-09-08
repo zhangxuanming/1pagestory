@@ -76,8 +76,10 @@
 					<h3 id="lastuserdes"></h3>
 				</div>
 			</div>
-			<div class="row" style="position: absolute">
-				<div class="col-xs-12 ps-block">
+		</div>
+		<div class="col-xs-12" style="position: absolute;bottom: 0;left: 0">
+			<div class="row" >
+				<div class="col-xs-12">
 					<button data-from="0" data-to="1"
 					        class="btn btn-block zh-btnwant"
 					        style="font-weight: bold;">我也要玩</button>
@@ -93,11 +95,10 @@
 	</div>
 <!--	起始页-->
     <div class="row page pagestart full zh-hidden zh-yellow">
-<!--	    <button class="btn btn-xs zh-btn zh-img-switch zh-btn-yellow" style="position: absolute;width:50px;height:50px;z-index:100;border-radius: 50%;text-align: center;color:#FFCC00">藏图</button>-->
-	    <div class="col-xs-12 v-center zh-story-title" style="top: 20%">
-
-	    </div>
-	    <div class="col-xs-12 ps-block" style="position: fixed;bottom: 0;">
+<!--	    <div class="col-xs-12 v-center zh-story-title" style="top: 20%">-->
+<!---->
+<!--	    </div>-->
+	    <div class="col-xs-12 ps-block">
 		    <h3 class="center-block text-center zh-t-white"style="    float: left;
     margin-left: 5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);">嗨！冒险 之</h3>
 		    <h1 class="center-block text-center zh-t-white" style="float: left;
@@ -472,6 +473,7 @@
 
     $(document).ready(function(){
 	    var sig = "http://wxapi.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
+//	    var sig = "http://dwx.wordhi.com/ticket?url="+ encodeURIComponent(window.location.href.split('#')[0]);
 	    $.getJSON(sig,function(data){
 		    alert(data.signature);
 		    wx.config({

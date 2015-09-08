@@ -471,6 +471,7 @@ and (max-device-width: 568px)
     }
 }
 .ps-block{
-    position: fixed;
+    position: absolute;
     bottom: 0;
+    left: 0;
 }
