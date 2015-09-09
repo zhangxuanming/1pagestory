@@ -462,7 +462,7 @@ and (max-device-width: 568px)
     color: #ffffff !important;
     border-color: #ffffff !important;
 }
-@media (max-height: 480px) {
+@media (max-height: 568px) {
     .zh-sbtn{
         font-size: 1.1em;
     }
