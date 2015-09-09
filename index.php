@@ -532,15 +532,15 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    trigger:function(res){
-				    if (zhGameLogic.userDes()!== ''){
-					    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“'+zhGameLogic.userDes()+'”称号';
-					    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
-					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
-				    }else{
+//				    if (zhGameLogic.userDes()!== ''){
+//					    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“'+zhGameLogic.userDes()+'”称号';
+//					    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
+//					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
+//				    }else{
 					    this.title = 逃离深山;
 					    this.imgUrl = shareLink + '/src/img/head.jpg';
 					    this.link = shareLink;
-				    }
+//				    }
 			    }
 		    });
 
