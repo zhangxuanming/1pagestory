@@ -512,10 +512,17 @@
 			    success:function(res){
 			    },
 			    trigger:function(){
-				    this.title = '冒险者: '+zhGameLogic.userName();
-				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
-				    this.desc = zhGameLogic.userDes();
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
+				    if(zhGameLogic.userDes()!=''){
+					    this.title = '冒险者: '+zhGameLogic.userName();
+					    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
+					    this.desc = zhGameLogic.userDes();
+					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
+				    }else{
+					    this.title = 逃离深山;
+					    this.imgUrl = shareLink + '/src/img/head.jpg';
+					    this.desc = '字嗨之逃离深山';
+					    this.link = shareLink;
+				    }
 			    }
 		    });
 
@@ -525,10 +532,15 @@
 			    link: shareLink,
 			    imgUrl: shareImg,
 			    trigger:function(res){
-				    alert(zhGameLogic.userDes());
-				    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“'+zhGameLogic.userDes()+'”称号';
-				    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
-				    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
+				    if(zhGameLogic.userDes()!=''){
+					    this.title = zhGameLogic.userName()+' 在逃离深山冒险获得\n“'+zhGameLogic.userDes()+'”称号';
+					    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
+					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
+				    }else{
+					    this.title = 逃离深山;
+					    this.imgUrl = shareLink + '/src/img/head.jpg';
+					    this.link = shareLink;
+				    }
 			    }
 		    });
 
