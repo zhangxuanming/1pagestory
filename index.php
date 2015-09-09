@@ -481,7 +481,6 @@
 			    nonceStr: data.nonceStr,
 			    signature: data.signature,
 			    jsApiList: [
-				    'checkJsApi',
 				    'onMenuShareTimeline',
 				    'onMenuShareAppMessage',
 				    'onMenuShareQQ',
