@@ -167,7 +167,7 @@
 		$name = isset($_GET["name"])?htmlspecialchars(trim($_GET["name"])):null;
 		$des = isset($_GET["des"])?htmlspecialchars(trim($_GET["des"])):null;
 		$img = isset($_GET["img"])?htmlspecialchars(trim($_GET["img"])):null;
-		if($name && $des){
+		if($name && $des && $img){
 			echo "lastUser ='".$name."';"."\n";
 			echo "lastDes ='".$des."';"."\n";
 			echo "lastImg ='".$img."';"."\n";
@@ -310,7 +310,7 @@
 	    me.showLastUserResult = function(lastUser,lastDes,lastImg){
 		    var $lastuserpage = $(".pagelastuser");
 		    var $splashpage =  $(".pagesplash");
-		    if (!lastUser || !lastDes) {
+		    if (!lastUser || !lastDes || !lastImg) {
 			    $splashpage.fadeIn(1000);
 			    return false;
 		    }
