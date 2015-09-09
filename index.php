@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="target-densitydpi=device-dpi,width=640,width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>字嗨预热啦</title>
+    <title>嗨！冒险 之 逃离深山 大冒险 现在起动啦！ 快来嗨一把吧！</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
