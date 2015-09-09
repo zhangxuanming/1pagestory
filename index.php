@@ -490,7 +490,7 @@
 		    });
 	    });
 	    wx.ready(function() {
-		    var shareTitle = "拐卖小朋友";
+		    var shareTitle = "嗨！冒险 之 逃离深山 大冒险 现在起动啦！ 快来嗨一把吧！";
 		    var shareDesc = '你要逃离深山，看你啦';
 		    var shareLink = 'http://wx.wordhi.com';
 		    var shareImgUrl ='http://wx.wordhi.com/src/img/badge/';
@@ -518,7 +518,7 @@
 					    this.desc = zhGameLogic.userDes();
 					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 				    }else{
-					    this.title = '逃离深山';
+					    this.title = shareTitle;
 					    this.imgUrl = shareLink + '/src/img/head.jpg';
 					    this.desc = '字嗨之逃离深山';
 					    this.link = shareLink;
@@ -537,7 +537,7 @@
 					    this.imgUrl = shareImgUrl + zhGameLogic.userBadge();
 					    this.link = shareLink+'?name='+zhGameLogic.userName()+'&des='+zhGameLogic.userDes()+'&img='+zhGameLogic.userBadge();
 				    }else{
-					    this.title = '逃离深山';
+					    this.title = shareTitle;
 					    this.imgUrl = shareLink + '/src/img/head.jpg';
 					    this.link = shareLink;
 				    }
