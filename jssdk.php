@@ -41,11 +41,13 @@ class JSSDK {
 
 	public function getDebugOutPut(){
 		$arr = [
-			"currentAccessToken" => $this->debugAccessToken,
-			"currectJSApiTicket" => $this->debugJSApiTicket,
+			"curlAccessToken" => $this->debugCurlAccessToken,
+			"curlJSApiTicket" => $this->debugCurlJSApiTicket,
+			"fileAccessToken" => $this->debugFileAccessToken,
+			"fileJSApiTicket" => $this->debugFileJSApiTicket,
 			"currentRequestUrl" => $this->debugRequestUrl
 		];
-		return json_encode($arr);
+		return $arr;
 	}
 
   private function createNonceStr($length = 16) {
