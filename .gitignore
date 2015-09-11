@@ -7,4 +7,6 @@
 *.iml
 out
 gen
+/jsapi_ticket.json
+/access_token.json
 
