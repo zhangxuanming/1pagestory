@@ -1,13 +1,3 @@
-<?php
-//require_once "jssdk.php";
-//$jssdk = new JSSDK("wxc3007d6255047618", "6f9ed761757250d67ef04e6e7bdc4cae");
-//$signPackage = $jssdk->GetSignPackage();
-//echo $signPackage["appId"];
-//echo $signPackage["timestamp"];
-//echo $signPackage["nonceStr"];
-//echo $signPackage["signature"];
-//echo $signPackage["url"];
-//?>
 <!DOCTYPE html>
 <html>
 <head lang = "en">
