@@ -2,7 +2,7 @@
 require_once "jssdk.php";
 $jssdk = new JSSDK("wxc3007d6255047618", "6f9ed761757250d67ef04e6e7bdc4cae");
 $signPackage = $jssdk->GetSignPackage();
-echo $jssdk->getDebugOutPut();
+var_dump($jssdk->getDebugOutPut());
 ?>
 <!DOCTYPE html>
 <html lang="en">
