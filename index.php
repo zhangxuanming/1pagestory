@@ -6,6 +6,7 @@ echo $signPackage["appId"];
 echo $signPackage["timestamp"];
 echo $signPackage["nonceStr"];
 echo $signPackage["signature"];
+echo $signPackage["url"];
 ?>
 <!DOCTYPE html>
 <html>

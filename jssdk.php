@@ -30,8 +30,8 @@ class JSSDK {
       "appId"     => $this->appId,
       "nonceStr"  => $nonceStr,
       "timestamp" => $timestamp,
-       "url"       => $url,
       "signature" => $signature,
+      "url"       => $url,
       // "rawString" => $string
     );
     return $signPackage;
