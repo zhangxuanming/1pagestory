@@ -78,6 +78,7 @@ class JSSDK {
       $res = json_decode($this->httpGet($url));
       $access_token = $res->access_token;
       if ($access_token) {
+	      var_dump("redownload");
         $data->expire_time = time() + 7000;
         $data->access_token = $access_token;
         $fp = fopen("access_token.json", "w");
