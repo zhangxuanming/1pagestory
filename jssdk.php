@@ -2,8 +2,10 @@
 class JSSDK {
   private $appId;
   private $appSecret;
-	private $debugAccessToken;
-	private  $debugJSApiTicket;
+	private $debugCurlAccessToken;
+	private $debugCurlJSApiTicket;
+	private $debugFileAccessToken;
+	private $debugFileJSApiTicket;
 	private $debugRequestUrl;
 
   public function __construct($appId, $appSecret) {
@@ -64,6 +66,9 @@ class JSSDK {
       // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
       $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
       $res = json_decode($this->httpGet($url));
+
+		$this->debugCurlJSApiTicket = $res;
+
       $ticket = $res->ticket;
       if ($ticket) {
         $data->expire_time = time() + 7000;
@@ -74,8 +79,9 @@ class JSSDK {
       }
     } else {
       $ticket = $data->jsapi_ticket;
+	    $this->debugFileJSApiTicket = $data;
     }
-	  $this->debugJSApiTicket = $data;
+
     return $ticket;
   }
 
@@ -88,6 +94,7 @@ class JSSDK {
       //https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
       $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
       $res = json_decode($this->httpGet($url));
+	    $this->debugCurlAccessToken = $res;
       $access_token = $res->access_token;
       if ($access_token) {
         $data->expire_time = time() + 7000;
@@ -98,8 +105,8 @@ class JSSDK {
       }
     } else {
       $access_token = $data->access_token;
+	    $this->debugFileAccessToken = $data;
     }
-	  $this->debugAccessToken = $data;
     return $access_token;
   }
 
