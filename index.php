@@ -15,7 +15,7 @@
         <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
         <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
     <![endif]-->
-	<img src="src/img/head.jpg" style="display: none">
+	<img src="src/img/head.jpg" style="width: 0;height: 0">
     <script src="js/juicer-min.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
