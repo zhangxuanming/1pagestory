@@ -1,7 +1,7 @@
 <?php
 class JSSDK {
-  private $appId;
-  private $appSecret;
+	private $appId;
+	private $appSecret;
 	private $debugCurlAccessToken;
 	private $debugCurlJSApiTicket;
 	private $debugFileAccessToken;
@@ -127,7 +127,7 @@ class JSSDK {
 
 	//log到文件
 	private function log($filename,$content){
-		$f = file_put_contents($filename,json_encode($content)."\n",FILE_APPEND);
+		$f = file_put_contents('log/'.$filename,json_encode($content)."\n",FILE_APPEND);
 		return $f;
 	}
 
