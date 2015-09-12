@@ -7,6 +7,9 @@
 *.iml
 out
 gen
+/call.log
+/curlJSApi.log
+/curlToken.log
 /jsapi_ticket.json
 /access_token.json
 
