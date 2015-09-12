@@ -2,7 +2,6 @@
 require_once "jssdk.php";
 $jssdk = new JSSDK("wxc3007d6255047618", "6f9ed761757250d67ef04e6e7bdc4cae");
 $signPackage = $jssdk->GetSignPackage();
-//var_dump($jssdk->getDebugOutPut());
 ?>
 <!DOCTYPE html>
 <html>
@@ -611,21 +610,6 @@ $signPackage = $jssdk->GetSignPackage();
 		});
 		$(".zh-btnwant").click(function(e){
 			zhGameLogic.restart();
-		});
-		$(".zh-img-switch").click(function(e){
-			var $img = $('.zh-img-block');
-			if (typeof($(this).data("flag")) == "undefined") {
-				$(this).data("flag",true);
-			}
-			if ($(this).data("flag")){
-				$img.hide();
-				$(this).data("flag",false);
-				$(this).html("显图");
-			}else{
-				$img.show();
-				$(this).data("flag",true);
-				$(this).html("藏图");
-			}
 		});
 	};
 </script>
