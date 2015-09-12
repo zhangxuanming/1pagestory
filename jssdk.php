@@ -73,11 +73,6 @@ class JSSDK {
 		  $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
 		  $res = json_decode($this->httpGet($url));
 		  $this->debugCurlJSApiTicket = $res;
-		  $this->log('curlJSApi.log',[
-			  'res'=>$res,
-			  'time'=>time(),
-		  ]);
-
 		  $ticket = $res->ticket;
 		  if ($ticket) {
 			  $data->expire_time = time() + 7000;
@@ -86,6 +81,11 @@ class JSSDK {
 			  fwrite($fp, json_encode($data));
 			  fclose($fp);
 		  }
+		  $this->log('curlJSApi.log',[
+			  'res'=>$res,
+			  'time'=>time(),
+			  'expire'=>time()+7000
+		  ]);
     } else {
         $ticket = $data->jsapi_ticket;
 	    $this->debugFileJSApiTicket = $data;
@@ -108,6 +108,7 @@ class JSSDK {
 	    $this->log('curlToken.log',[
 		    'res'=>$res,
 		    'time'=>time(),
+		    'expire'=>time()+7000
 	    ]);
 
       $access_token = $res->access_token;
