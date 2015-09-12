@@ -119,9 +119,9 @@ class JSSDK {
 	//log到文件
 	private function log($filename,$content){
 		$contentArr = [
-			'response'=>$content,
 			'timestamp'=>time(),
-			'date' => date("y-m-d H:i:s", time())
+			'date' => date("y-m-d H:i:s", time()),
+			'response'=>$content
 		];
 		$fsize = filesize($filename);
 		if ($fsize > 1 * 1024 * 1024) {
