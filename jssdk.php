@@ -124,7 +124,7 @@ class JSSDK {
 			'response'=>$content
 		];
 		$fsize = filesize($filename);
-		if ($fsize > 1 * 1024 * 1024) {
+		if ($fsize > 1024 * 1024) {
 			$f = file_put_contents('log/'.$filename,json_encode($contentArr)."\n");
 		} else{
 			$f = file_put_contents('log/'.$filename,json_encode($contentArr)."\n",FILE_APPEND);
