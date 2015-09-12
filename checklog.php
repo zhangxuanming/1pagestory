@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		pre {
+			font-size: 10px;
+		}
+	</style>
 <body>
 <h3>Call Log</h3>
 <div style="background-color: #ffffff;color: #000000">
