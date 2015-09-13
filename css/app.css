@@ -260,7 +260,9 @@ and (max-device-width: 568px)
 }
 
 #zh-name {
-
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
 }
 .zh-name {
     background-color: transparent;
@@ -270,12 +272,14 @@ and (max-device-width: 568px)
     text-align: left;
     margin-left: 15px;
     width: 100%;
+
     transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+
     animation: zhname 2s infinite ease;
     -webkit-animation: zhname 2s infinite ease;
     -moz-animation: zhname 2s infinite ease;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
     z-index: 20;
 }
 .zh-name-active{
