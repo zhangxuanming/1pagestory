@@ -265,6 +265,7 @@ and (max-device-width: 568px)
     -moz-border-radius: 0;
 }
 .zh-name {
+
     background-color: transparent;
     border: none;
     font-size: 1.2em;
@@ -294,9 +295,9 @@ and (max-device-width: 568px)
     padding-top: 10%;
     padding-bottom: 10%;
     background-color: rgba(0,0,0,0.6);
-    transition: all 1s ease;
+    transition: 1s ease-out;
     transform: translateY(-50%);
-    -webkit-transition: all 1s ease;
+    -webkit-transition: 1s ease-out;
     -webkit-transform: translateY(-50%);
 }
 
