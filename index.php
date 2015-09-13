@@ -112,7 +112,7 @@ $signPackage = $jssdk->GetSignPackage();
 		    <h3 class="center-block zh-t-white"style="float: left;text-align: left;
     margin:5%;font-size: 1.2em;color: rgba(255, 255, 255, 0.78);line-height: 1.5em;">你从酒吧出来已是午夜，夜灯下无人的马路自有其浪漫风味。忽然你觉得脑后一疼……</h3>
 		    <div class="row zh-name-wrap">
-			    <input id="zh-name" class="" style="margin-left: 15px" type="text" maxlength="8" value="你的名字?" placeholder="默认嗨客">
+			    <input id="zh-name" class="zh-name" type="text" maxlength="8" value="你的名字?" placeholder="默认嗨客">
 		    </div>
 		    <div class="row">
 			    <button data-from="0" data-to="1" class="col-xs-10 col-xs-offset-1 btn btn-lg zh-btn zh-btn-yellow zh-btnstart"style="font-weight: bold;">开始嗨</button>
@@ -610,6 +610,13 @@ $signPackage = $jssdk->GetSignPackage();
 		$(".zh-btnwant").click(function(e){
 			zhGameLogic.restart();
 		});
+		var $zhname = $('#zh-name');
+		$zhname.focus(function(e){
+			$(this).toggleClass("zh-name-active");
+		});
+		$zhname.blur(function(e){
+			$(this).toggleClass("zh-name-active");
+		})
 	};
 </script>
 </body>
